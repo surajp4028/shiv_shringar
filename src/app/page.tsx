@@ -21,26 +21,29 @@ export default async function Home() {
   await connection(); // always render with the latest admin content
   const data = await getSiteData();
   const { settings } = data;
+  // Sections switched off in /admin → Settings → Website sections.
+  const off = new Set(settings.hiddenSections ?? []);
+  const on = (id: string) => !off.has(id);
 
   return (
     <div className="relative w-full overflow-x-clip bg-background">
-      <SiteNavbar />
+      <SiteNavbar hidden={[...off]} />
       <main>
         <Hero settings={settings} />
-        <Marquee items={settings.announcement} />
-        <Highlights items={data.highlights} />
-        <Darshan items={data.shringar} />
-        <SpecialEvents items={data.events} />
-        <Videos items={data.videos} settings={settings} />
-        <About settings={settings} />
-        <Events items={data.events} />
-        <Yatra items={data.trips} settings={settings} />
-        <Schedule items={data.schedule} />
-        <Gallery items={data.gallery} />
-        <Support settings={settings} />
-        <Contact settings={settings} trips={data.trips} />
+        {on("marquee") && <Marquee items={settings.announcement} />}
+        {on("highlights") && <Highlights items={data.highlights} />}
+        {on("darshan") && <Darshan items={data.shringar} />}
+        {on("special") && <SpecialEvents items={data.events} />}
+        {on("videos") && <Videos items={data.videos} settings={settings} />}
+        {on("about") && <About settings={settings} />}
+        {on("events") && <Events items={data.events} />}
+        {on("yatra") && <Yatra items={data.trips} settings={settings} />}
+        {on("schedule") && <Schedule items={data.schedule} />}
+        {on("gallery") && <Gallery items={data.gallery} />}
+        {on("support") && <Support settings={settings} />}
+        {on("contact") && <Contact settings={settings} trips={data.trips} />}
       </main>
-      <Footer settings={settings} />
+      <Footer settings={settings} hidden={[...off]} />
       <WhatsAppButton number={settings.whatsapp} />
     </div>
   );

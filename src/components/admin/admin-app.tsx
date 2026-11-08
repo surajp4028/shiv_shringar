@@ -3,16 +3,18 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
   IconSettings, IconCalendarEvent, IconVideo, IconFlower, IconCircles, IconRoute, IconPhoto, IconClock,
-  IconMail, IconPlus, IconPencil, IconTrash, IconLoader2, IconLogout, IconExternalLink, IconDatabase, IconCheck, IconX,
+  IconMail, IconPlus, IconPencil, IconTrash, IconEye, IconEyeOff, IconLibraryPhoto, IconLoader2, IconLogout, IconExternalLink, IconDatabase, IconCheck, IconX,
 } from "@tabler/icons-react";
 import { sections, settingsFields, type Section } from "./schema";
 import { FieldInput, Thumb } from "./fields";
+import { MediaBrowser } from "./media-library";
 import type { Settings } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 type Item = Record<string, unknown> & { id: string; createdAt: string };
 
 const icons: Record<string, typeof IconSettings> = {
+  media: IconLibraryPhoto,
   settings: IconSettings, events: IconCalendarEvent, videos: IconVideo, shringar: IconFlower, highlights: IconCircles,
   trips: IconRoute, gallery: IconPhoto, schedule: IconClock, messages: IconMail,
 };
@@ -71,7 +73,7 @@ function SettingsEditor({ notify }: { notify: (t: string, ok?: boolean) => void 
           <h3 className="mb-5 font-display text-xl font-semibold text-amber-100">{g.group}</h3>
           <div className="grid gap-5 md:grid-cols-2">
             {g.fields.map((f) => (
-              <label key={f.key} className={cn("block space-y-2", ["textarea", "list", "mediaList", "media"].includes(f.type) && "md:col-span-2")}>
+              <label key={f.key} className={cn("block space-y-2", ["textarea", "list", "mediaList", "media", "sections"].includes(f.type) && "md:col-span-2")}>
                 <span className="text-sm text-neutral-300">{f.label}</span>
                 <FieldInput field={f} value={s[f.key]} onChange={(v) => setS({ ...s, [f.key]: v })} />
                 {f.hint && <span className="block text-xs text-neutral-500">{f.hint}</span>}
@@ -138,13 +140,23 @@ function CollectionEditor({ section, notify }: { section: Section; notify: (t: s
   };
 
   const remove = async (item: Item) => {
-    if (!confirm(`Delete “${String(item[section.titleKey] || section.singular)}”? This cannot be undone.`)) return;
+    if (!confirm(`Delete “${String(item[section.titleKey] || section.singular)}”? This cannot be undone.\n\nPhotos/videos you uploaded only for this will also be deleted from the server.`)) return;
     try {
-      await api(`/api/admin/${section.id}/${item.id}`, { method: "DELETE" });
-      notify("Deleted");
+      const r = await api<{ removed?: string[] }>(`/api/admin/${section.id}/${item.id}`, { method: "DELETE" });
+      notify(r.removed?.length ? `Deleted (and ${r.removed.length} unused file${r.removed.length > 1 ? "s" : ""})` : "Deleted");
       load();
     } catch (e) {
       notify(e instanceof Error ? e.message : "Delete failed", false);
+    }
+  };
+
+  const toggleHidden = async (item: Item) => {
+    try {
+      await api(`/api/admin/${section.id}/${item.id}`, { method: "PUT", body: JSON.stringify({ hidden: !item.hidden }) });
+      notify(item.hidden ? "Now showing on the website" : "Hidden from the website");
+      load();
+    } catch (e) {
+      notify(e instanceof Error ? e.message : "Update failed", false);
     }
   };
 
@@ -204,7 +216,7 @@ function CollectionEditor({ section, notify }: { section: Section; notify: (t: s
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {items.map((it) => (
-            <div key={it.id} className="group overflow-hidden rounded-2xl border border-white/10 bg-neutral-950">
+            <div key={it.id} className={cn("group overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 transition", it.hidden === true && "opacity-50")}>
               {section.imageKey && (
                 <div className="aspect-video overflow-hidden bg-neutral-900">
                   <Thumb src={String(it[section.imageKey] || (section.id === "videos" ? it.url : "") || "")} />
@@ -214,9 +226,11 @@ function CollectionEditor({ section, notify }: { section: Section; notify: (t: s
                 <div className="min-w-0">
                   <p className="truncate font-semibold text-amber-50">{String(it[section.titleKey] ?? "Untitled")}</p>
                   {section.subtitleKey && <p className="truncate text-xs text-neutral-500">{String(it[section.subtitleKey] ?? "")}</p>}
-                  {it.featured === true && <span className="mt-1 inline-block rounded-full bg-amber-500/15 px-2 py-0.5 text-[10px] text-amber-300">Featured</span>}
+                  {it.featured === true && <span className="mt-1 mr-1 inline-block rounded-full bg-amber-500/15 px-2 py-0.5 text-[10px] text-amber-300">Featured</span>}
+                  {it.hidden === true && <span className="mt-1 inline-block rounded-full bg-white/10 px-2 py-0.5 text-[10px] text-neutral-300">Hidden from site</span>}
                 </div>
                 <div className="flex shrink-0 gap-1">
+                  <button onClick={() => toggleHidden(it)} aria-label={it.hidden ? "Show on website" : "Hide from website"} title={it.hidden ? "Show on website" : "Hide from website"} className="rounded-lg p-2 text-neutral-400 hover:bg-white/5 hover:text-amber-300">{it.hidden ? <IconEyeOff size={17} /> : <IconEye size={17} />}</button>
                   <button onClick={() => setEditing({ ...blank(section), ...it })} aria-label="Edit" className="rounded-lg p-2 text-neutral-400 hover:bg-white/5 hover:text-amber-300"><IconPencil size={17} /></button>
                   <button onClick={() => remove(it)} aria-label="Delete" className="rounded-lg p-2 text-neutral-400 hover:bg-white/5 hover:text-red-400"><IconTrash size={17} /></button>
                 </div>
@@ -234,7 +248,7 @@ export function AdminApp({ mode }: { mode: string }) {
   const [msg, setMsg] = useState<{ text: string; ok: boolean } | null>(null);
   const notify = useCallback((text: string, ok = true) => setMsg({ text, ok }), []);
   const section = sections.find((s) => s.id === tab);
-  const tabs = [{ id: "settings", label: "Settings" }, ...sections.map((s) => ({ id: s.id, label: s.label }))];
+  const tabs = [{ id: "settings", label: "Settings" }, ...sections.map((s) => ({ id: s.id, label: s.label })), { id: "media", label: "Media library" }];
 
   const logout = async () => {
     await fetch("/api/admin/logout", { method: "POST" });
@@ -251,7 +265,7 @@ export function AdminApp({ mode }: { mode: string }) {
             <p className="text-[10px] tracking-widest text-neutral-500 uppercase">Admin</p>
           </div>
         </div>
-        <nav className="no-scrollbar flex gap-1 overflow-x-auto px-3 pb-3 lg:flex-col lg:overflow-visible">
+        <nav className="no-scrollbar flex gap-1 overflow-x-auto overflow-y-hidden px-3 pb-3 lg:flex-col lg:overflow-visible">
           {tabs.map((t) => {
             const Icon = icons[t.id];
             return (
@@ -272,15 +286,25 @@ export function AdminApp({ mode }: { mode: string }) {
         <div className="mx-auto max-w-5xl">
           <div className="mb-8 flex items-start justify-between gap-4">
             <div>
-              <h1 className="text-gold font-display text-4xl font-semibold">{section?.label ?? "Settings"}</h1>
-              <p className="mt-1 text-sm text-neutral-500">{section?.description ?? "WhatsApp number, email, hero video, timings and mandir details."}</p>
+              <h1 className="text-gold font-display text-4xl font-semibold">{tab === "media" ? "Media library" : (section?.label ?? "Settings")}</h1>
+              <p className="mt-1 text-sm text-neutral-500">
+                {tab === "media"
+                  ? "Every photo and video on the website. Upload new ones, see where each is used, or delete files from the server."
+                  : (section?.description ?? "WhatsApp number, email, website sections, hero video, timings and mandir details.")}
+              </p>
             </div>
             <div className="flex gap-2 lg:hidden">
               <a href="/" target="_blank" className="rounded-xl border border-white/10 p-2.5 text-neutral-400"><IconExternalLink size={18} /></a>
               <button onClick={logout} className="rounded-xl border border-white/10 p-2.5 text-neutral-400"><IconLogout size={18} /></button>
             </div>
           </div>
-          {section ? <CollectionEditor key={section.id} section={section} notify={notify} /> : <SettingsEditor notify={notify} />}
+          {tab === "media" ? (
+            <MediaBrowser className="rounded-2xl border border-white/10 bg-neutral-950 p-5" />
+          ) : section ? (
+            <CollectionEditor key={section.id} section={section} notify={notify} />
+          ) : (
+            <SettingsEditor notify={notify} />
+          )}
         </div>
       </main>
       <Toast msg={msg} onDone={() => setMsg(null)} />

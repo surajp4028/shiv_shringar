@@ -249,5 +249,22 @@ export async function getSiteData(): Promise<SiteData> {
     listItems("gallery"),
     listItems("schedule"),
   ]);
-  return { settings, events, videos, shringar, highlights, trips, gallery, schedule };
+  // Items switched off in /admin ("Hide from website") are left out.
+  const shown = <T,>(list: T[]) => list.filter((x) => !(x as { hidden?: boolean }).hidden);
+  return {
+    settings,
+    events: shown(events),
+    videos: shown(videos),
+    shringar: shown(shringar),
+    highlights: shown(highlights),
+    trips: shown(trips),
+    gallery: shown(gallery),
+    schedule: shown(schedule),
+  };
+}
+
+/** Everything the site stores, as one string — used to check whether a file is still in use. */
+export async function contentText(): Promise<string> {
+  const lists = await Promise.all(COLLECTIONS.filter((c) => c !== "messages").map((c) => listItems(c)));
+  return JSON.stringify([await getSettings(), ...lists]);
 }

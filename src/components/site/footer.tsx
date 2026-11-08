@@ -13,7 +13,7 @@ const links = [
   { name: "Contact", href: "#contact" },
 ];
 
-export function Footer({ settings }: { settings: Settings }) {
+export function Footer({ settings, hidden = [] }: { settings: Settings; hidden?: string[] }) {
   return (
     <footer className="bg-[#1a0f0a] pb-10 text-stone-300">
       <div className="mx-auto hidden h-[16rem] max-w-6xl items-center justify-center md:flex">
@@ -36,7 +36,7 @@ export function Footer({ settings }: { settings: Settings }) {
           </p>
         </div>
         <nav className="grid grid-cols-2 gap-2 text-sm md:justify-self-center">
-          {links.map((l) => (
+          {links.filter((l) => !hidden.includes(l.href.slice(1))).map((l) => (
             <a key={l.href} href={l.href} className="text-stone-400 transition hover:text-orange-300">
               {l.name}
             </a>

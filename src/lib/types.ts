@@ -25,6 +25,8 @@ export type Settings = {
   upiQr: string;
   bankDetails: string;
   donationNote: string;
+  /** Homepage sections switched off in /admin. */
+  hiddenSections: string[];
 };
 
 type Base = { id: string; createdAt: string };
@@ -82,6 +84,8 @@ export type TripItem = Base & {
   spots: string[];
   lat: number;
   lng: number;
+  /** Optional showcase video: uploaded MP4, YouTube or Instagram link. */
+  video?: string;
 };
 
 export type GalleryItem = Base & {

@@ -178,6 +178,11 @@ export function Darshan({ items }: { items: ShringarItem[] }) {
             >
               <img src={s.image} alt={s.title} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/5 to-transparent" />
+              {s.video && (
+                <span className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/55 text-white shadow">
+                  <IconPlayerPlayFilled size={14} />
+                </span>
+              )}
               <div className="absolute inset-x-0 bottom-0 p-3.5">
                 <p className="text-[10px] font-medium tracking-wider text-orange-200 uppercase">{s.occasion}</p>
                 <p className="font-display text-lg leading-tight font-semibold text-white">{s.title}</p>
@@ -192,14 +197,27 @@ export function Darshan({ items }: { items: ShringarItem[] }) {
           <div className="grid overflow-hidden rounded-3xl bg-white md:grid-cols-2">
             {open.video && mediaKind(open.video) === "file" ? (
               <video src={open.video} autoPlay muted loop playsInline controls className="max-h-[80vh] w-full bg-black object-contain" />
+            ) : open.video && mediaKind(open.video) === "youtube" ? (
+              <iframe src={embedUrl(open.video)} title={open.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" className="aspect-[9/16] max-h-[80vh] w-full bg-black md:aspect-auto md:h-full" />
             ) : (
-              <img src={open.image} alt={open.title} className="max-h-[80vh] w-full object-cover" />
+              <img src={open.image} alt={open.title} className="max-h-[80vh] w-full object-cover md:h-full" />
             )}
             <div className="p-8">
               <p className="text-xs font-semibold tracking-widest text-orange-600 uppercase">{open.deity} • {open.occasion}</p>
               <h3 className="text-sacred mt-2 font-display text-4xl font-semibold">{open.title}</h3>
               <p className="mt-2 text-sm text-stone-500">{formatDate(open.date)}</p>
               <p className="mt-6 leading-relaxed text-stone-700">{open.description}</p>
+              {open.video && mediaKind(open.video) !== "file" && mediaKind(open.video) !== "youtube" && (
+                <a
+                  href={open.video}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-amber-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5"
+                >
+                  {mediaKind(open.video) === "instagram" ? <IconBrandInstagram size={18} /> : <IconPlayerPlayFilled size={16} />}
+                  {mediaKind(open.video) === "instagram" ? "Watch on Instagram" : "Watch the video"}
+                </a>
+              )}
               {(open.gallery?.length ?? 0) > 0 && (
                 <button onClick={() => { setViewer({ photos: photosOf(open), i: 0, title: open.title }); setOpen(null); }} className="mt-6 flex items-center gap-2 text-sm font-semibold text-orange-600">
                   <IconPhoto size={16} /> View {photosOf(open).length} photos

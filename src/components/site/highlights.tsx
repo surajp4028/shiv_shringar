@@ -99,7 +99,7 @@ export function Highlights({ items }: { items: HighlightItem[] }) {
     <section id="highlights" className="relative border-b border-orange-100 bg-white/60 py-14">
       <div className="mx-auto max-w-6xl px-4">
         <p className="mb-8 text-center text-[11px] font-semibold tracking-[0.35em] text-orange-600 uppercase">Story Highlights</p>
-        <div className="no-scrollbar flex justify-start gap-6 overflow-x-auto pb-2 md:justify-center md:gap-10">
+        <div className="no-scrollbar flex justify-start gap-6 overflow-x-auto overflow-y-hidden overscroll-x-contain pt-2 pb-3 md:justify-center md:gap-10">
           {items.map((h, i) => (
             <motion.button
               key={h.id}

@@ -11,7 +11,7 @@ import {
   NavbarButton,
 } from "@/components/ui/resizable-navbar";
 
-const items = [
+const allItems = [
   { name: "Darshan", link: "#darshan" },
   { name: "Specials", link: "#special" },
   { name: "Videos", link: "#videos" },
@@ -32,17 +32,21 @@ function Logo() {
   );
 }
 
-export function SiteNavbar() {
+export function SiteNavbar({ hidden = [] }: { hidden?: string[] }) {
   const [open, setOpen] = useState(false);
+  const items = allItems.filter((i) => !hidden.includes(i.link.slice(1)));
+  const showSeva = !hidden.includes("support");
   return (
     <Navbar className="fixed top-3">
       <NavBody>
         <Logo />
         <NavItems items={items} />
         <div className="relative z-20">
-          <NavbarButton href="#support" variant="gradient">
-            Offer Seva
-          </NavbarButton>
+          {showSeva && (
+            <NavbarButton href="#support" variant="gradient">
+              Offer Seva
+            </NavbarButton>
+          )}
         </div>
       </NavBody>
       <MobileNav>
@@ -51,7 +55,7 @@ export function SiteNavbar() {
           <MobileNavToggle isOpen={open} onClick={() => setOpen(!open)} />
         </MobileNavHeader>
         <MobileNavMenu isOpen={open} onClose={() => setOpen(false)}>
-          {[...items, { name: "Offer Seva", link: "#support" }].map((item) => (
+          {[...items, ...(showSeva ? [{ name: "Offer Seva", link: "#support" }] : [])].map((item) => (
             <a key={item.link} href={item.link} onClick={() => setOpen(false)} className="w-full text-lg text-stone-700">
               {item.name}
             </a>

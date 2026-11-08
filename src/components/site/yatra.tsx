@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
 import { motion } from "motion/react";
-import { IconMapPin, IconCalendar, IconPhoto } from "@tabler/icons-react";
+import { IconMapPin, IconCalendar, IconPhoto, IconPlayerPlayFilled, IconBrandInstagram } from "@tabler/icons-react";
 import WorldMap from "@/components/ui/world-map";
 import { useMounted } from "@/hooks/use-mounted";
 import { SectionHeading } from "./section-heading";
 import { Modal } from "./modal";
-import { formatDate, isVideo } from "@/lib/media";
+import { embedUrl, formatDate, isVideo, mediaKind } from "@/lib/media";
 import type { Settings, TripItem } from "@/lib/types";
 
 const INDIA = ["IND"];
@@ -49,6 +49,11 @@ export function Yatra({ items, settings }: { items: TripItem[]; settings: Settin
                 <div className="relative h-44 overflow-hidden sm:h-full">
                   {t.cover && <img src={t.cover} alt={t.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />}
                   <span className="absolute top-3 left-3 font-display text-5xl font-bold text-white/80">0{i + 1}</span>
+                  {t.video && (
+                    <span className="absolute right-3 bottom-3 flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-semibold text-white">
+                      <IconPlayerPlayFilled size={12} /> Video
+                    </span>
+                  )}
                 </div>
                 <div className="p-6">
                   <div className="flex flex-wrap items-center gap-3 text-xs text-orange-600">
@@ -72,21 +77,30 @@ export function Yatra({ items, settings }: { items: TripItem[]; settings: Settin
 
       <Modal open={!!open} onClose={() => setOpen(null)} className="max-w-5xl">
         {open && (() => {
-          const photos = open.gallery.length ? open.gallery : [open.cover];
+          const vKind = open.video ? mediaKind(open.video) : null;
+          const playable = vKind === "file" || vKind === "youtube";
+          // The showcase video (if it can play here) is the first slide.
+          const photos = [...(playable ? [open.video!] : []), ...(open.gallery.length ? open.gallery : [open.cover])].filter(Boolean);
           const src = photos[photo] ?? photos[0];
           return (
             <div className="grid max-h-[90vh] overflow-y-auto rounded-3xl border border-orange-100 bg-white lg:grid-cols-2">
               <div className="bg-stone-100">
-                {isVideo(src) ? (
-                  <video src={src} autoPlay muted loop playsInline controls className="max-h-[60vh] w-full object-contain" />
+                {mediaKind(src) === "youtube" ? (
+                  <iframe src={embedUrl(src)} title={open.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" className="aspect-video w-full bg-black" />
+                ) : isVideo(src) ? (
+                  <video key={src} src={src} autoPlay muted loop playsInline controls className="max-h-[60vh] w-full bg-black object-contain" />
                 ) : (
                   <img src={src} alt={open.title} className="max-h-[60vh] w-full object-contain" />
                 )}
                 {photos.length > 1 && (
-                  <div className="no-scrollbar flex gap-2 overflow-x-auto p-3">
+                  <div className="no-scrollbar flex gap-2 overflow-x-auto overflow-y-hidden p-3">
                     {photos.map((p, k) => (
                       <button key={p + k} onClick={() => setPhoto(k)} className={`h-16 w-16 shrink-0 overflow-hidden rounded-xl border-2 ${k === photo ? "border-orange-500" : "border-transparent opacity-60"}`}>
-                        {isVideo(p) ? <div className="flex h-full items-center justify-center bg-stone-300 text-xs">▶</div> : <img src={p} alt="" className="h-full w-full object-cover" />}
+                        {isVideo(p) || mediaKind(p) === "youtube" ? (
+                          <div className="flex h-full flex-col items-center justify-center gap-0.5 bg-stone-800 text-[10px] font-semibold text-white"><IconPlayerPlayFilled size={14} /> Video</div>
+                        ) : (
+                          <img src={p} alt="" className="h-full w-full object-cover" />
+                        )}
                       </button>
                     ))}
                   </div>
@@ -95,6 +109,12 @@ export function Yatra({ items, settings }: { items: TripItem[]; settings: Settin
               <div className="p-8">
                 <p className="flex items-center gap-1 text-xs text-orange-600"><IconMapPin size={13} /> {open.place}</p>
                 <h3 className="text-sacred mt-2 font-display text-4xl font-semibold">{open.title}</h3>
+                {open.video && !playable && (
+                  <a href={open.video} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-amber-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5">
+                    {vKind === "instagram" ? <IconBrandInstagram size={18} /> : <IconPlayerPlayFilled size={16} />}
+                    {vKind === "instagram" ? "Watch the yatra on Instagram" : "Watch the yatra video"}
+                  </a>
+                )}
                 <p className="mt-5 leading-relaxed whitespace-pre-line text-stone-700">{open.description}</p>
                 <p className="mt-8 mb-3 flex items-center gap-2 text-xs tracking-widest text-orange-600/80 uppercase"><IconPhoto size={14} /> Places we visited</p>
                 <ol className="space-y-2">

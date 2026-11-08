@@ -67,7 +67,7 @@ export function Scroller({
       </div>
       <div
         ref={track}
-        className={cn("no-scrollbar -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-5 pb-2 md:mx-0 md:px-0", trackClassName)}
+        className={cn("no-scrollbar -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth px-5 py-2 [touch-action:pan-x_pan-y] md:mx-0 md:px-0", trackClassName)}
       >
         {children}
       </div>

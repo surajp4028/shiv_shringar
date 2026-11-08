@@ -1,6 +1,6 @@
 import type { CollectionName, Settings } from "@/lib/types";
 
-export type FieldType = "text" | "textarea" | "date" | "number" | "bool" | "image" | "media" | "list" | "mediaList";
+export type FieldType = "text" | "textarea" | "date" | "number" | "bool" | "image" | "media" | "list" | "mediaList" | "sections";
 
 export type Field = { key: string; label: string; type: FieldType; hint?: string; required?: boolean };
 
@@ -36,6 +36,7 @@ export const sections: Section[] = [
       { key: "featured", label: "Featured (show big in Events)", type: "bool" },
       { key: "special", label: "Special showcase (own full-width section)", type: "bool" },
       { key: "route", label: "Route / programme (one stop per line, optional)", type: "list" },
+      { key: "hidden", label: "Hide from website", type: "bool", hint: "Switch on to keep this saved but not show it on the site" },
     ],
   },
   {
@@ -52,6 +53,7 @@ export const sections: Section[] = [
       { key: "poster", label: "Thumbnail (optional)", type: "image" },
       { key: "category", label: "Category", type: "text", hint: "Shringar, Aarti, Bhajan, Festival…" },
       { key: "featured", label: "Featured", type: "bool" },
+      { key: "hidden", label: "Hide from website", type: "bool", hint: "Switch on to keep this saved but not show it on the site" },
     ],
   },
   {
@@ -71,6 +73,7 @@ export const sections: Section[] = [
       { key: "description", label: "Description", type: "textarea" },
       { key: "video", label: "Video (autoplays muted) — upload MP4 or YouTube link", type: "media" },
       { key: "gallery", label: "More photos (collage)", type: "mediaList" },
+      { key: "hidden", label: "Hide from website", type: "bool", hint: "Switch on to keep this saved but not show it on the site" },
     ],
   },
   {
@@ -84,6 +87,7 @@ export const sections: Section[] = [
       { key: "title", label: "Title", type: "text", required: true },
       { key: "cover", label: "Cover photo", type: "image", required: true },
       { key: "media", label: "Story photos / videos", type: "mediaList" },
+      { key: "hidden", label: "Hide from website", type: "bool", hint: "Switch on to keep this saved but not show it on the site" },
     ],
   },
   {
@@ -100,10 +104,12 @@ export const sections: Section[] = [
       { key: "date", label: "Date", type: "date" },
       { key: "description", label: "Description", type: "textarea" },
       { key: "cover", label: "Cover photo", type: "image" },
+      { key: "video", label: "Showcase video (optional) — upload MP4, or YouTube / Instagram link", type: "media" },
       { key: "gallery", label: "Photos / videos", type: "mediaList" },
       { key: "spots", label: "Places visited (one per line)", type: "list" },
       { key: "lat", label: "Latitude", type: "number", hint: "Ujjain 23.1828" },
       { key: "lng", label: "Longitude", type: "number", hint: "Ujjain 75.7682" },
+      { key: "hidden", label: "Hide from website", type: "bool", hint: "Switch on to keep this saved but not show it on the site" },
     ],
   },
   {
@@ -118,6 +124,7 @@ export const sections: Section[] = [
       { key: "title", label: "Caption", type: "text" },
       { key: "src", label: "Photo / video", type: "media", required: true },
       { key: "category", label: "Category", type: "text", hint: "Shiv Shringar, Mata Rani, Festivals…" },
+      { key: "hidden", label: "Hide from website", type: "bool", hint: "Switch on to keep this saved but not show it on the site" },
     ],
   },
   {
@@ -132,6 +139,7 @@ export const sections: Section[] = [
       { key: "time", label: "Time", type: "text", required: true, hint: "9:00 PM" },
       { key: "day", label: "Day", type: "text", hint: "Daily, Somvar, Mangalvar…" },
       { key: "description", label: "Description", type: "text" },
+      { key: "hidden", label: "Hide from website", type: "bool", hint: "Switch on to keep this saved but not show it on the site" },
     ],
   },
   {
@@ -152,6 +160,10 @@ export const sections: Section[] = [
 ];
 
 export const settingsFields: { group: string; fields: (Field & { key: keyof Settings })[] }[] = [
+  {
+    group: "Website sections",
+    fields: [{ key: "hiddenSections", label: "Turn sections on or off — switched-off sections disappear from the website", type: "sections" }],
+  },
   {
     group: "Contact & social",
     fields: [

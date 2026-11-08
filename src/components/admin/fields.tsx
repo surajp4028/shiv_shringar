@@ -1,6 +1,8 @@
 "use client";
 import { useRef, useState } from "react";
-import { IconUpload, IconLoader2, IconX, IconLink } from "@tabler/icons-react";
+import { IconUpload, IconLoader2, IconX, IconLink, IconPhoto } from "@tabler/icons-react";
+import { MediaLibraryModal } from "./media-library";
+import { SITE_SECTIONS } from "@/lib/sections";
 import { mediaKind, youtubeThumb } from "@/lib/media";
 import type { Field } from "./schema";
 
@@ -61,6 +63,18 @@ function UploadButton({ accept, multiple, onUploaded }: { accept: string; multip
   );
 }
 
+function LibraryButton({ multiple, only, onPick }: { multiple?: boolean; only?: "image"; onPick: (urls: string[]) => void }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <button type="button" onClick={() => setOpen(true)} className="flex shrink-0 items-center gap-1.5 rounded-xl border border-white/15 bg-white/5 px-3 py-2.5 text-sm text-neutral-200 transition hover:bg-white/10">
+        <IconPhoto size={16} /> Library
+      </button>
+      <MediaLibraryModal open={open} onClose={() => setOpen(false)} onPick={onPick} multiple={multiple} only={only} />
+    </>
+  );
+}
+
 export function FieldInput({ field, value, onChange }: { field: Field; value: unknown; onChange: (v: unknown) => void }) {
   switch (field.type) {
     case "textarea":
@@ -75,6 +89,29 @@ export function FieldInput({ field, value, onChange }: { field: Field; value: un
           <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition ${value ? "left-[22px]" : "left-0.5"}`} />
         </button>
       );
+    case "sections": {
+      const hidden = (value as string[]) ?? [];
+      return (
+        <div className="grid gap-2 sm:grid-cols-2">
+          {SITE_SECTIONS.map((sec) => {
+            const on = !hidden.includes(sec.id);
+            return (
+              <button
+                key={sec.id}
+                type="button"
+                onClick={() => onChange(on ? [...hidden, sec.id] : hidden.filter((h) => h !== sec.id))}
+                className={`flex items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left text-sm transition ${on ? "border-amber-500/30 bg-amber-500/10 text-amber-50" : "border-white/10 bg-white/[0.02] text-neutral-500"}`}
+              >
+                <span>{sec.label}</span>
+                <span className={`relative h-6 w-11 shrink-0 rounded-full transition ${on ? "bg-amber-500" : "bg-neutral-700"}`}>
+                  <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition ${on ? "left-[22px]" : "left-0.5"}`} />
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      );
+    }
     case "list":
       return (
         <textarea
@@ -94,6 +131,7 @@ export function FieldInput({ field, value, onChange }: { field: Field; value: un
               <IconLink size={15} className="absolute top-1/2 left-3 -translate-y-1/2 text-neutral-500" />
               <input className={`${inputCls} pl-9`} placeholder={field.type === "media" ? "Upload, or paste a YouTube / Instagram / .mp4 / image link" : "Upload, or paste an image link"} value={v} onChange={(e) => onChange(e.target.value)} />
             </div>
+            <LibraryButton only={field.type === "image" ? "image" : undefined} onPick={(u) => onChange(u[0])} />
             <UploadButton accept={field.type === "image" ? "image/*" : "image/*,video/*"} onUploaded={(u) => onChange(u[0])} />
           </div>
           {v && (
@@ -121,6 +159,7 @@ export function FieldInput({ field, value, onChange }: { field: Field; value: un
                 e.currentTarget.value = "";
               }}
             />
+            <LibraryButton multiple onPick={(u) => onChange([...list, ...u.filter((x) => !list.includes(x))])} />
             <UploadButton accept="image/*,video/*" multiple onUploaded={(u) => onChange([...list, ...u])} />
           </div>
           {list.length > 0 && (

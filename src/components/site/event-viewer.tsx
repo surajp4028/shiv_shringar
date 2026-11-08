@@ -40,7 +40,7 @@ export function EventViewer({ event, start = 0 }: { event: EventItem; start?: nu
         )}
       </div>
       {photos.length > 1 && (
-        <div className="no-scrollbar flex gap-2 overflow-x-auto bg-stone-100 p-3">
+        <div className="no-scrollbar flex gap-2 overflow-x-auto overflow-y-hidden bg-stone-100 p-3">
           {photos.map((p, k) => (
             <button
               key={p + k}
