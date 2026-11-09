@@ -1,21 +1,29 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { IconMapPin, IconCalendar, IconPhoto, IconPlayerPlayFilled, IconBrandInstagram } from "@tabler/icons-react";
+import { IconMapPin, IconCalendar, IconPhoto, IconPlayerPlayFilled, IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import WorldMap from "@/components/ui/world-map";
 import { useMounted } from "@/hooks/use-mounted";
 import { SectionHeading } from "./section-heading";
 import { Modal } from "./modal";
 import { embedUrl, formatDate, isVideo, mediaKind } from "@/lib/media";
 import type { Settings, TripItem } from "@/lib/types";
-import { Swipe } from "./swipe";
+import { Slides } from "./slides";
+import { VideoModal } from "./video-modal";
 
 const INDIA = ["IND"];
 
 export function Yatra({ items, settings }: { items: TripItem[]; settings: Settings }) {
   const [open, setOpen] = useState<TripItem | null>(null);
   const [photo, setPhoto] = useState(0);
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const strip = useRef<HTMLDivElement>(null);
   const mounted = useMounted();
+
+  // Keep the current thumbnail in view while sliding.
+  useEffect(() => {
+    (strip.current?.children[photo] as HTMLElement | undefined)?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  }, [photo]);
   if (items.length === 0) return null;
 
   const home = { lat: settings.mapLat, lng: settings.mapLng, label: "Our Mandir" };
@@ -76,67 +84,89 @@ export function Yatra({ items, settings }: { items: TripItem[]; settings: Settin
         </div>
       </div>
 
-      <Modal open={!!open} onClose={() => setOpen(null)} className="max-w-5xl">
+      <Modal open={!!open} onClose={() => setOpen(null)} className="max-w-6xl">
         {open && (() => {
           const vKind = open.video ? mediaKind(open.video) : null;
           const playable = vKind === "file" || vKind === "youtube";
           // The showcase video (if it can play here) is the first slide.
           const photos = [...(playable ? [open.video!] : []), ...(open.gallery.length ? open.gallery : [open.cover])].filter(Boolean);
-          const src = photos[photo] ?? photos[0];
+          const step = (d: number) => setPhoto((p) => (p + d + photos.length) % photos.length);
           return (
-            <div className="grid max-h-[90vh] overflow-y-auto rounded-3xl border border-orange-100 bg-white lg:grid-cols-2">
-              <div className="bg-stone-100">
-                {mediaKind(src) === "youtube" ? (
-                  <iframe src={embedUrl(src)} title={open.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" className="aspect-video w-full bg-black" />
-                ) : isVideo(src) ? (
-                  <video key={src} src={src} autoPlay muted loop playsInline controls className="max-h-[60vh] w-full bg-black object-contain" />
-                ) : (
-                  <Swipe
-                    onPrev={() => setPhoto((p) => (p - 1 + photos.length) % photos.length)}
-                    onNext={() => setPhoto((p) => (p + 1) % photos.length)}
-                    enabled={photos.length > 1}
-                  >
-                    <img key={src} src={src} alt={open.title} className="max-h-[60vh] w-full object-contain" />
-                  </Swipe>
-                )}
+            <div className="flex max-h-[90vh] flex-col overflow-hidden rounded-3xl bg-white lg:grid lg:h-[82vh] lg:grid-cols-[1.45fr_1fr]">
+              {/* Media: smooth slider + thumbnails */}
+              <div className="flex shrink-0 flex-col bg-stone-950 lg:min-h-0">
+                <div className="relative lg:min-h-0 lg:flex-1">
+                  <Slides
+                    items={photos}
+                    index={photo}
+                    onIndex={setPhoto}
+                    className="h-[40vh] sm:h-[48vh] lg:h-full"
+                    render={(src, _i, active) =>
+                      mediaKind(src) === "youtube" ? (
+                        active ? <iframe src={embedUrl(src)} title={open.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" className="aspect-video w-full" /> : null
+                      ) : isVideo(src) ? (
+                        active ? <video src={src} autoPlay muted loop playsInline controls className="h-full w-full object-contain" /> : null
+                      ) : (
+                        <img src={src} alt={open.title} decoding="async" className="h-full w-full object-contain" />
+                      )
+                    }
+                  />
+                  {photos.length > 1 && (
+                    <>
+                      <button onClick={() => step(-1)} aria-label="Previous" className="absolute top-1/2 left-3 -translate-y-1/2 rounded-full bg-white/90 p-2.5 text-stone-800 shadow-lg"><IconChevronLeft size={20} /></button>
+                      <button onClick={() => step(1)} aria-label="Next" className="absolute top-1/2 right-3 -translate-y-1/2 rounded-full bg-white/90 p-2.5 text-stone-800 shadow-lg"><IconChevronRight size={20} /></button>
+                      <span className="absolute right-3 bottom-3 rounded-full bg-black/60 px-3 py-1 text-xs text-white">{photo + 1} / {photos.length}</span>
+                    </>
+                  )}
+                </div>
                 {photos.length > 1 && (
-                  <div className="no-scrollbar flex gap-2 overflow-x-auto overflow-y-hidden p-3">
+                  <div ref={strip} className="no-scrollbar flex shrink-0 gap-2 overflow-x-auto overflow-y-hidden bg-stone-900 p-3">
                     {photos.map((p, k) => (
-                      <button key={p + k} onClick={() => setPhoto(k)} className={`h-16 w-16 shrink-0 overflow-hidden rounded-xl border-2 ${k === photo ? "border-orange-500" : "border-transparent opacity-60"}`}>
+                      <button key={p + k} onClick={() => setPhoto(k)} className={`h-14 w-14 shrink-0 overflow-hidden rounded-xl border-2 transition sm:h-16 sm:w-16 ${k === photo ? "border-orange-500" : "border-transparent opacity-50 hover:opacity-100"}`}>
                         {isVideo(p) || mediaKind(p) === "youtube" ? (
-                          <div className="flex h-full flex-col items-center justify-center gap-0.5 bg-stone-800 text-[10px] font-semibold text-white"><IconPlayerPlayFilled size={14} /> Video</div>
+                          <span className="relative block h-full w-full bg-stone-700">
+                            {isVideo(p) && <video src={p + "#t=1"} muted playsInline preload="metadata" className="h-full w-full object-cover" />}
+                            <span className="absolute inset-0 flex items-center justify-center bg-black/30 text-white"><IconPlayerPlayFilled size={16} /></span>
+                          </span>
                         ) : (
-                          <img src={p} alt="" className="h-full w-full object-cover" />
+                          <img src={p} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
                         )}
                       </button>
                     ))}
                   </div>
                 )}
               </div>
-              <div className="p-8">
-                <p className="flex items-center gap-1 text-xs text-orange-600"><IconMapPin size={13} /> {open.place}</p>
-                <h3 className="text-sacred mt-2 font-display text-4xl font-semibold">{open.title}</h3>
+
+              {/* Details */}
+              <div className="min-h-0 flex-1 overflow-y-auto p-6 sm:p-8">
+                <p className="flex items-center gap-1.5 text-xs font-medium text-orange-600"><IconMapPin size={14} /> {open.place}</p>
+                <h3 className="text-sacred mt-2 font-display text-3xl leading-tight font-semibold sm:text-4xl">{open.title}</h3>
+                {open.date && <p className="mt-2 flex items-center gap-1.5 text-sm text-stone-500"><IconCalendar size={15} /> {formatDate(open.date, { day: "numeric", month: "long", year: "numeric" })}</p>}
                 {open.video && !playable && (
-                  <a href={open.video} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-amber-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5">
-                    {vKind === "instagram" ? <IconBrandInstagram size={18} /> : <IconPlayerPlayFilled size={16} />}
-                    {vKind === "instagram" ? "Watch the yatra on Instagram" : "Watch the yatra video"}
-                  </a>
+                  <button type="button" onClick={() => setVideoUrl(open.video!)} className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-red-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5">
+                    <IconPlayerPlayFilled size={16} /> Watch the yatra video
+                  </button>
                 )}
                 <p className="mt-5 leading-relaxed whitespace-pre-line text-stone-700">{open.description}</p>
-                <p className="mt-8 mb-3 flex items-center gap-2 text-xs tracking-widest text-orange-600/80 uppercase"><IconPhoto size={14} /> Places we visited</p>
-                <ol className="space-y-2">
-                  {open.spots.map((s, k) => (
-                    <li key={s} className="flex items-start gap-3 text-sm text-stone-700">
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange-100 text-[10px] text-orange-700">{k + 1}</span>
-                      {s}
-                    </li>
-                  ))}
-                </ol>
+                {open.spots.length > 0 && (
+                  <>
+                    <p className="mt-7 mb-3 flex items-center gap-2 text-xs font-semibold tracking-widest text-orange-600/80 uppercase"><IconPhoto size={14} /> Places we visited</p>
+                    <ol className="space-y-2">
+                      {open.spots.map((sp, k) => (
+                        <li key={sp} className="flex items-start gap-3 text-sm text-stone-700">
+                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange-100 text-[10px] font-semibold text-orange-700">{k + 1}</span>
+                          {sp}
+                        </li>
+                      ))}
+                    </ol>
+                  </>
+                )}
               </div>
             </div>
           );
         })()}
       </Modal>
+      <VideoModal url={videoUrl} title={open?.title} onClose={() => setVideoUrl(null)} />
     </section>
   );
 }

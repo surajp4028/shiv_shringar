@@ -6,7 +6,7 @@ import { SectionHeading } from "./section-heading";
 import { Modal } from "./modal";
 import { isVideo } from "@/lib/media";
 import type { GalleryItem } from "@/lib/types";
-import { Swipe } from "./swipe";
+import { Slides } from "./slides";
 import { cn } from "@/lib/utils";
 
 export function Gallery({ items }: { items: GalleryItem[] }) {
@@ -69,13 +69,19 @@ export function Gallery({ items }: { items: GalleryItem[] }) {
       <Modal open={!!current} onClose={() => setOpen(null)} className="max-w-5xl">
         {current && (
           <div className="relative flex flex-col items-center">
-            {isVideo(current.src) ? (
-              <video src={current.src} autoPlay controls playsInline className="max-h-[80vh] rounded-2xl" />
-            ) : (
-              <Swipe onPrev={() => step(-1)} onNext={() => step(1)} enabled={shown.length > 1}>
-                <img key={current.src} src={current.src} alt={current.title} className="max-h-[80vh] rounded-2xl object-contain" />
-              </Swipe>
-            )}
+            <Slides
+              items={shown}
+              index={open ?? 0}
+              onIndex={setOpen}
+              className="h-[72vh] w-full sm:h-[78vh]"
+              render={(g, _i, active) =>
+                isVideo(g.src) ? (
+                  active ? <video src={g.src} autoPlay controls playsInline className="h-full w-full rounded-2xl object-contain" /> : null
+                ) : (
+                  <img src={g.src} alt={g.title} decoding="async" className="h-full w-full rounded-2xl object-contain" />
+                )
+              }
+            />
             <p className="mt-4 font-display text-xl text-white">{current.title}</p>
             {shown.length > 1 && (
               <>

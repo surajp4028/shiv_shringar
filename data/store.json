@@ -1,0 +1,766 @@
+{
+  "settings": {
+    "siteName": "Shiv Shringar",
+    "samitiName": "Shiv Shringar Sewa Samiti",
+    "templeName": "Prachin Hanuman Mandir",
+    "address": "Prachin Hanuman Mandir, East Azad Nagar, Delhi - 110051",
+    "tagline": "Har Har Mahadev",
+    "heroTitle": "Daily Shiv Shringar Darshan",
+    "heroSubtitle": "Every evening at Prachin Hanuman Mandir, our sewaks adorn Mahadev and Mata Rani with flowers, bhasm and devotion — as Mahakal, as the nine forms of the Devi, and in a new form for every festival. Join us for darshan, bhajan and aarti.",
+    "heroVideo": "",
+    "heroImages": [
+      "/media/temple/shivling-hero.jpg",
+      "/media/insta/ardhanarishwar.jpg",
+      "/media/insta/shobha-yatra-4.jpg",
+      "/media/insta/kaal-bhairav-tiger.jpg",
+      "/media/insta/mahashtami.jpg"
+    ],
+    "darshanTime": "9:00 PM",
+    "aartiTime": "9:15 PM",
+    "phone": "+91 79826 24533",
+    "whatsapp": "917982624533",
+    "email": "surajp4028@gmail.com",
+    "instagram": "https://www.instagram.com/shiv_shringar.7",
+    "youtube": "https://youtube.com/@surajpandey4028",
+    "announcement": [
+      "Om Namah Shivaya",
+      "Daily Shringar Darshan at 9:00 PM",
+      "Shayan Aarti at 9:15 PM",
+      "Tuesday Hanuman Aarti",
+      "Shiv Shobha Yatra — every Sawan",
+      "Bhajan • Kirtan • Prasad Seva",
+      "All devotees of Mahadev are welcome"
+    ],
+    "aboutText": "Shiv Shringar Sewa Samiti is a group of young devotees who serve at Prachin Hanuman Mandir, East Azad Nagar. Every single day we adorn the Shivling and Mata Rani with flowers, sandalwood, bhasm, garments and ornaments, followed by bhajan, kirtan and aarti.\n\nOn festivals and auspicious days we prepare a special shringar — Mahakal, the nine forms of Durga during Navratri, Shiv Parivar, Krishna's Nauka Vihar on Janmashtami and many more. We also organise Rudrabhishek, prasad seva and group pilgrimages.",
+    "mapLat": 28.6639578,
+    "mapLng": 77.2799892,
+    "mapUrl": "https://www.google.com/maps/place/Hanuman+Mandir+(Ramlila+Ground)/@28.6639578,77.2799892,19z/data=!4m6!3m5!1s0x390cfc84ad7bd793:0x4320fe7875911481!8m2!3d28.6639578!4d77.2799892",
+    "upiId": "",
+    "upiName": "Shiv Shringar Sewa Samiti",
+    "upiQr": "",
+    "bankDetails": "",
+    "hiddenSections": [],
+    "donationNote": "Every flower, every diya and every plate of prasad is offered through the love of devotees like you. Your contribution goes directly into the daily shringar, festival decorations, bhandara and temple upkeep."
+  },
+  "events": [
+    {
+      "title": "Bhavya Shiv Shobha Yatra",
+      "description": "Our grandest celebration of the year. In the holy month of Sawan the samiti carried Mahadev through the streets of East Azad Nagar and Krishna Nagar — with jhankis of Shiv, Mahakali and Mata Rani, an aghori fire dance, dhol, DJ and hundreds of devotees dancing in bhakti.\n\nThe day began at 1:00 PM with abhishek, divya shringar, prasad, mangal aarti and bhajan-kirtan at the mandir. The procession set off at 3:00 PM and returned for vishram at 6:00 PM, followed by a vishal bhandara of aloo sabzi, puri and kheer, served by Shri Balaji Mitra Mandal.",
+      "date": "2026-08-09",
+      "time": "1:00 PM – 6:00 PM",
+      "location": "Starting from Hanuman Mandir, East Azad Nagar",
+      "image": "/media/insta/shobha-yatra-12.jpg",
+      "gallery": [
+        "/media/insta/shobha-yatra-4.jpg",
+        "/media/insta/shobha-yatra-1.jpg",
+        "/media/insta/shobha-yatra-5.jpg",
+        "/media/insta/shobha-yatra-7.jpg",
+        "/media/insta/shobha-yatra-10.jpg",
+        "/media/insta/shobha-yatra-11.jpg",
+        "/media/insta/shobha-yatra-3.jpg",
+        "/media/insta/shobha-yatra-2.jpg",
+        "/media/insta/shobha-yatra-13.jpg",
+        "/media/insta/shobha-yatra-6.jpg",
+        "/media/insta/shobha-yatra-8.jpg",
+        "/media/insta/shobha-yatra-poster.jpg"
+      ],
+      "featured": false,
+      "special": true,
+      "route": [
+        "Hanuman Mandir, East Azad Nagar — start",
+        "East Azad Nagar Chowk",
+        "Jain Mandir, Krishna Nagar",
+        "Goyal Hospital, Krishna Nagar",
+        "Hanuman Chowk (Chhachhi Building / Lal Quarter)",
+        "Ghote Wale Hanuman Mandir, Rajgarh Colony",
+        "Geeta Bal Bharti School",
+        "Hanuman Mandir, East Azad Nagar — vishram at 6:00 PM"
+      ],
+      "id": "3b255b3e-6f11-4b21-9036-f76d0d3eec2e",
+      "createdAt": "2026-11-09T03:17:23.424Z"
+    },
+    {
+      "title": "Baba Barfani — Amarnath Hima Shringar",
+      "description": "Mahadev in the form of Baba Barfani, just like the holy ice lingam of Amarnath. Our sewaks brought in slabs of ice and, with their own hands, shaped a mountain of snow over the Shivling — then adorned Baba with marigold, roses, rudraksha and a shower of petals.\n\nThe evening ended with aarti and a joyful bhajan sandhya as devotees took darshan of the snow-covered Baba before the ice slowly melted away.",
+      "date": "2026-07-13",
+      "time": "Evening darshan & aarti",
+      "location": "Prachin Hanuman Mandir",
+      "image": "/media/insta/barfani.jpg",
+      "gallery": [
+        "/media/insta/barfani-2.jpg",
+        "/media/insta/barfani-3.jpg",
+        "/media/insta/barfani-making.jpg",
+        "/media/insta/barfani-making-2.jpg",
+        "/media/insta/barfani-making-3.jpg",
+        "/media/insta/barfani-making-4.jpg",
+        "/media/insta/barfani-petals.jpg",
+        "/media/insta/barfani-aarti.jpg",
+        "/media/insta/barfani-bhajan.jpg"
+      ],
+      "featured": false,
+      "special": true,
+      "route": [],
+      "id": "2668a523-be7c-4753-b89b-3da9f0924e6f",
+      "createdAt": "2026-11-09T03:16:23.424Z"
+    },
+    {
+      "title": "Janmashtami Nauka Vihar",
+      "description": "Nand ke ghar anand bhayo! On Shri Krishna Janmashtami, Laddu Gopal and Radha Rani took a boat ride through a pool of flowers. Devotees took turns rowing the decorated boat, sang bhajans and celebrated the birth of Kanha till midnight.",
+      "date": "2026-09-04",
+      "time": "8:00 PM – 12:00 AM",
+      "location": "Prachin Hanuman Mandir",
+      "image": "/media/janmashtami/nauka-vihar-hero.jpg",
+      "gallery": [
+        "/media/janmashtami/nauka-vihar-1.jpg",
+        "/media/janmashtami/nauka-vihar-2.jpg",
+        "/media/janmashtami/nauka-vihar-3.jpg",
+        "/media/janmashtami/nauka-vihar-5.jpg",
+        "/media/janmashtami/nauka-vihar-4.jpg",
+        "/media/janmashtami/nauka-vihar-8.jpg",
+        "/media/janmashtami/nauka-vihar-6.jpg",
+        "/media/janmashtami/nauka-vihar-7.jpg",
+        "/media/janmashtami/nauka-vihar-9.jpg",
+        "/media/janmashtami/nauka-vihar-10.jpg"
+      ],
+      "featured": true,
+      "route": [],
+      "id": "6a0f45ce-63ab-4f18-9816-b44f45c08944",
+      "createdAt": "2026-11-09T03:15:23.424Z"
+    },
+    {
+      "title": "Sharadiya Navratri — Nau Devi Shringar",
+      "description": "For nine nights the Shivling was adorned in the forms of the Devi — from Shailputri on the first day to Mahagauri on Mahashtami — with chunari, nath, crowns and garlands of marigold.",
+      "date": "2026-10-12",
+      "time": "Daily, 9:00 PM darshan",
+      "location": "Prachin Hanuman Mandir",
+      "image": "/media/insta/mahashtami.jpg",
+      "gallery": [
+        "/media/insta/navratri-day1.jpg",
+        "/media/insta/navratri-day6.jpg",
+        "/media/insta/mahashtami-2.jpg",
+        "/media/insta/durga.jpg",
+        "/media/insta/durga-2.jpg",
+        "/media/insta/navratri-day1-2.jpg"
+      ],
+      "featured": false,
+      "route": [],
+      "id": "10b46127-a1b4-4d44-83ac-277e71dcadaf",
+      "createdAt": "2026-11-09T03:14:23.424Z"
+    },
+    {
+      "title": "Ganesh Chaturthi",
+      "description": "Mahadev adorned as Shri Ganesh — with a golden crown, trunk and green garlands — to welcome Vighnaharta on Ganesh Chaturthi.",
+      "date": "2026-09-15",
+      "time": "9:00 PM",
+      "location": "Prachin Hanuman Mandir",
+      "image": "/media/insta/ganesh-chaturthi.jpg",
+      "gallery": [
+        "/media/insta/ganesh-chaturthi-2.jpg",
+        "/media/insta/ganesh-swaroop.jpg"
+      ],
+      "featured": false,
+      "route": [],
+      "id": "9eb65746-fb0a-4c32-a2da-3ac45454ba0b",
+      "createdAt": "2026-11-09T03:13:23.424Z"
+    },
+    {
+      "title": "Sawan Somvar Shringar",
+      "description": "Every Monday of Sawan brought a new alaukik roop of Baba — green Rudra, bhasm with tiger skin, white vastra and Mahakal.",
+      "date": "2026-08-04",
+      "time": "Every Monday of Sawan",
+      "location": "Prachin Hanuman Mandir",
+      "image": "/media/insta/sawan-green.jpg",
+      "gallery": [
+        "/media/insta/sawan-bhasm.jpg",
+        "/media/insta/sawan-white.jpg",
+        "/media/insta/sawan-alaukik.jpg",
+        "/media/insta/mundmala.jpg",
+        "/media/insta/rudra-skulls.jpg"
+      ],
+      "featured": false,
+      "route": [],
+      "id": "5b9b6773-97c0-4cde-9c41-4bd83b665472",
+      "createdAt": "2026-11-09T03:12:23.424Z"
+    },
+    {
+      "title": "Radha Krishna Nauka Vihar Mahotsav",
+      "description": "A Nauka Vihar celebration for Shri Radha-Krishna at the Shivalaya, with the boat floating on a pool of rose petals beside Mahadev.",
+      "date": "2026-06-28",
+      "time": "Evening",
+      "location": "Prachin Hanuman Mandir",
+      "image": "/media/insta/nauka-mahotsav.jpg",
+      "gallery": [
+        "/media/insta/nauka-mahotsav-2.jpg",
+        "/media/insta/nauka-mahotsav-3.jpg"
+      ],
+      "featured": false,
+      "route": [],
+      "id": "a0012026-1309-4ea5-9d8a-7f8c3569ba3f",
+      "createdAt": "2026-11-09T03:11:23.424Z"
+    }
+  ],
+  "videos": [
+    {
+      "title": "Shiv Shobha Yatra",
+      "url": "https://www.instagram.com/p/Db3CAxZsAo6/",
+      "poster": "/media/insta/shobha-yatra-4.jpg",
+      "category": "Festival",
+      "featured": true,
+      "id": "1f3dff22-fccd-428f-a5e0-700a58c25fe5",
+      "createdAt": "2026-11-09T03:17:23.424Z"
+    },
+    {
+      "title": "Janmashtami Nauka Vihar",
+      "url": "https://www.instagram.com/p/Dc5sNoDT1Ug/",
+      "poster": "/media/janmashtami/nauka-vihar-1.jpg",
+      "category": "Festival",
+      "featured": false,
+      "id": "da423867-d6d9-4d64-b4f6-d610ecebb034",
+      "createdAt": "2026-11-09T03:16:23.424Z"
+    },
+    {
+      "title": "Baba Barfani Hima Shringar",
+      "url": "https://www.instagram.com/p/DauglO3z66U/",
+      "poster": "/media/insta/barfani.jpg",
+      "category": "Shringar",
+      "featured": false,
+      "id": "18908850-9dfb-4cdc-a7b6-2ffeba0dc444",
+      "createdAt": "2026-11-09T03:15:23.424Z"
+    },
+    {
+      "title": "Mahakal Form",
+      "url": "https://www.instagram.com/p/DZiS7wbz3Ys/",
+      "poster": "/media/mahakal/mahakal-1.jpg",
+      "category": "Shringar",
+      "featured": false,
+      "id": "f2651b9c-d12e-43ce-b7d8-896ecad32ace",
+      "createdAt": "2026-11-09T03:14:23.424Z"
+    },
+    {
+      "title": "Mahashtami — Mata Rani",
+      "url": "https://www.instagram.com/p/DeqhtYKpWsR/",
+      "poster": "/media/insta/mahashtami.jpg",
+      "category": "Navratri",
+      "featured": false,
+      "id": "e70c5e78-a123-4022-81c4-e1622659a32e",
+      "createdAt": "2026-11-09T03:13:23.424Z"
+    },
+    {
+      "title": "Kaal Bhairav Roop",
+      "url": "https://www.instagram.com/p/DeIzmh3zb0L/",
+      "poster": "/media/insta/kaal-bhairav.jpg",
+      "category": "Shringar",
+      "featured": false,
+      "id": "84aa4422-f3da-4e41-8c0c-051df335e130",
+      "createdAt": "2026-11-09T03:12:23.424Z"
+    },
+    {
+      "title": "Radhashtami — Radha Roop",
+      "url": "https://www.instagram.com/p/DdfvwRqzAD-/",
+      "poster": "/media/insta/radha.jpg",
+      "category": "Festival",
+      "featured": false,
+      "id": "a74a111c-ce3f-411c-adae-c0e56f2f6d00",
+      "createdAt": "2026-11-09T03:11:23.424Z"
+    },
+    {
+      "title": "Hanuman Swaroop",
+      "url": "https://www.instagram.com/p/DdVcMWXTPQP/",
+      "poster": "/media/insta/hanuman.jpg",
+      "category": "Shringar",
+      "featured": false,
+      "id": "f1c28a09-2982-440d-bbd8-88b1208449a1",
+      "createdAt": "2026-11-09T03:10:23.424Z"
+    }
+  ],
+  "shringar": [
+    {
+      "title": "Deepawali Shringar",
+      "deity": "Mahadev & Mata Rani",
+      "occasion": "Diwali",
+      "date": "2026-11-08",
+      "image": "/media/darshan/diwali-1.jpg",
+      "description": "Shubh Deepawali! On the night of Diwali, Bholenath was adorned with garlands of red and pink roses and a silver crescent moon, while Mata Rani wore a crown of pink flowers and a yellow chunari. The mandir was decorated with rangoli, hanging damrus and marigold, and the evening ended with bhajan, aarti and diyas.",
+      "video": "/media/darshan/diwali-shringar.mp4",
+      "gallery": [
+        "/media/darshan/diwali-2.jpg",
+        "/media/darshan/diwali-4.jpg",
+        "/media/darshan/diwali-3.jpg",
+        "/media/darshan/diwali-5.jpg",
+        "/media/darshan/diwali-6.jpg",
+        "/media/darshan/diwali-7.jpg",
+        "/media/darshan/diwali-8.jpg",
+        "/media/darshan/diwali-9.jpg",
+        "/media/darshan/diwali-10.jpg",
+        "/media/darshan/diwali-11.jpg"
+      ],
+      "id": "d5497dfd-162a-4c5d-889e-0e8cef52ddd3",
+      "createdAt": "2026-11-09T03:17:23.425Z"
+    },
+    {
+      "title": "Mahagauri — Mahashtami",
+      "deity": "Mata Rani",
+      "occasion": "Navratri",
+      "date": "2026-10-19",
+      "image": "/media/insta/mahashtami.jpg",
+      "description": "On Mahashtami the Shivling took the gentle form of Mata Mahagauri — pink chunari, nath, bindi and a crown of marigold.",
+      "video": "https://www.instagram.com/reel/DeqhtYKpWsR/",
+      "id": "1e171aa6-e408-41ed-a4c6-87fbc9c53beb",
+      "createdAt": "2026-11-09T03:16:23.425Z"
+    },
+    {
+      "title": "Katyayani — Navratri Day 6",
+      "deity": "Mata Rani",
+      "occasion": "Navratri",
+      "date": "2026-10-17",
+      "image": "/media/insta/navratri-day6.jpg",
+      "description": "A blue chunari and golden nath for Maa Katyayani on the sixth day of Navratri.",
+      "video": "https://www.instagram.com/reel/DelMkAzprNq/",
+      "id": "617f929f-a187-474e-b689-1519fc646920",
+      "createdAt": "2026-11-09T03:15:23.425Z"
+    },
+    {
+      "title": "Kaal Bhairav",
+      "deity": "Mahadev",
+      "occasion": "Special Shringar",
+      "date": "2026-10-06",
+      "image": "/media/insta/kaal-bhairav.jpg",
+      "description": "Bholenath adorned as Kaal Bhairav — a fierce, glowing form that holds the eyes of every devotee.",
+      "video": "https://www.instagram.com/reel/DeIzmh3zb0L/",
+      "id": "c77e5119-dfbc-43aa-a55e-6d1e223b0a4f",
+      "createdAt": "2026-11-09T03:14:23.425Z"
+    },
+    {
+      "title": "Maa Durga Roop",
+      "deity": "Mahadev",
+      "occasion": "Navratri",
+      "date": "2026-10-05",
+      "image": "/media/insta/durga.jpg",
+      "description": "Bhole Bhandari in the image of Maa Durga — a rare and beautiful Shiv-Shakti shringar.",
+      "video": "https://www.instagram.com/reel/DeGUkDHSlCd/",
+      "id": "dd1058e2-02ab-4f1a-9772-3d80f7d54b65",
+      "createdAt": "2026-11-09T03:13:23.425Z"
+    },
+    {
+      "title": "Chandra & Sheshnag",
+      "deity": "Mahadev",
+      "occasion": "Daily Shringar",
+      "date": "2026-10-04",
+      "image": "/media/insta/moon-cobra.jpg",
+      "description": "A silver crescent, Sheshnag and white flowers — the classic serene form of Mahadev.",
+      "id": "5b38f1ab-3335-409e-82be-8cf87b7abfc5",
+      "createdAt": "2026-11-09T03:12:23.425Z"
+    },
+    {
+      "title": "Shri Radha Roop",
+      "deity": "Mahadev",
+      "occasion": "Radhashtami",
+      "date": "2026-09-20",
+      "image": "/media/insta/radha.jpg",
+      "description": "On Radhashtami the Shivling was adorned as Shri Radha — peacock feathers, yellow chunari and love.",
+      "video": "https://www.instagram.com/reel/DdfvwRqzAD-/",
+      "id": "29503e46-25b3-4b43-a899-fcd1cf84d49a",
+      "createdAt": "2026-11-09T03:11:23.425Z"
+    },
+    {
+      "title": "Shri Ganesh Roop",
+      "deity": "Mahadev",
+      "occasion": "Ganesh Utsav",
+      "date": "2026-09-17",
+      "image": "/media/insta/ganesh-swaroop.jpg",
+      "description": "Shiv mein Ganesh, Ganesh mein Shiv — Mahadev adorned as Vighnaharta with a tiger-skin vastra.",
+      "id": "1fc0a09c-4b6a-4a29-b5ce-7b037115fc4c",
+      "createdAt": "2026-11-09T03:10:23.425Z"
+    },
+    {
+      "title": "Hanuman Swaroop",
+      "deity": "Mahadev",
+      "occasion": "Mangalvar",
+      "date": "2026-09-16",
+      "image": "/media/insta/hanuman.jpg",
+      "description": "On a Tuesday, Bholenath was adorned as Shri Hanuman — sindoor face and a golden mukut.",
+      "video": "https://www.instagram.com/reel/DdVcMWXTPQP/",
+      "id": "ff1e8fc1-1363-442f-9eed-020e24b823d5",
+      "createdAt": "2026-11-09T03:09:23.425Z"
+    },
+    {
+      "title": "Ardhanarishwar",
+      "deity": "Mahadev",
+      "occasion": "Sawan",
+      "date": "2026-08-12",
+      "image": "/media/insta/ardhanarishwar.jpg",
+      "description": "Half Shiv, half Shakti — Mahadev's Ardhanarishwar form, one of the most loved shringars of our samiti.",
+      "id": "ac74e2f5-e9a9-4d4b-82d4-a4f762d62960",
+      "createdAt": "2026-11-09T03:08:23.425Z"
+    },
+    {
+      "title": "Sawan Pratham Somvar",
+      "deity": "Mahadev",
+      "occasion": "Sawan",
+      "date": "2026-08-04",
+      "image": "/media/insta/sawan-green.jpg",
+      "description": "A green Rudra roop with jasmine and roses for the first Monday of Sawan.",
+      "id": "ddf0789a-69a6-446f-978b-ed3640eb50d8",
+      "createdAt": "2026-11-09T03:07:23.425Z"
+    },
+    {
+      "title": "Bhasm & Vyaghra Charm",
+      "deity": "Mahadev",
+      "occasion": "Sawan",
+      "date": "2026-07-19",
+      "image": "/media/insta/kaal-bhairav-tiger.jpg",
+      "description": "Bhasm ki maya, phoolon ki kaya — tiger skin, a silver crescent and the third eye.",
+      "id": "fefd269e-aba3-4611-9e02-c109fa4cacb3",
+      "createdAt": "2026-11-09T03:06:23.425Z"
+    },
+    {
+      "title": "Mahadev as Mata Rani",
+      "deity": "Mahadev",
+      "occasion": "Special Shringar",
+      "date": "2026-07-18",
+      "image": "/media/insta/mata-swaroop.jpg",
+      "description": "Mahadev adorned in the sacred form of Mata — red chunari, pearls and gold.",
+      "id": "a6424ad4-b829-412b-8702-4ceb9420d8b4",
+      "createdAt": "2026-11-09T03:05:23.425Z"
+    },
+    {
+      "title": "Baba Barfani",
+      "deity": "Mahadev",
+      "occasion": "Hima Shringar",
+      "date": "2026-07-13",
+      "image": "/media/insta/barfani.jpg",
+      "description": "Baba Barfani — a mountain of real ice shaped over the Shivling by our sewaks, adorned with marigold and rudraksha.",
+      "video": "https://www.instagram.com/reel/DauglO3z66U/",
+      "id": "158affe6-4575-4e7f-85b9-aa51ba0f2b6c",
+      "createdAt": "2026-11-09T03:04:23.425Z"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Shobha Yatra",
+      "cover": "/media/insta/shobha-yatra-4.jpg",
+      "media": [
+        "/media/insta/shobha-yatra-12.jpg",
+        "/media/insta/shobha-yatra-4.jpg",
+        "/media/insta/shobha-yatra-5.jpg",
+        "/media/insta/shobha-yatra-7.jpg",
+        "/media/insta/shobha-yatra-1.jpg",
+        "/media/insta/shobha-yatra-poster.jpg"
+      ],
+      "id": "bd5a373b-b7b3-4b17-b623-0c97ae89421d",
+      "createdAt": "2026-11-09T03:17:23.425Z"
+    },
+    {
+      "title": "Baba Barfani",
+      "cover": "/media/insta/barfani.jpg",
+      "media": [
+        "/media/insta/barfani-making.jpg",
+        "/media/insta/barfani.jpg",
+        "/media/insta/barfani-3.jpg",
+        "/media/insta/barfani-aarti.jpg"
+      ],
+      "id": "d66b49f0-c1c6-4117-bd68-8f598ccab42d",
+      "createdAt": "2026-11-09T03:16:23.425Z"
+    },
+    {
+      "title": "Janmashtami",
+      "cover": "/media/janmashtami/nauka-vihar-1.jpg",
+      "media": [
+        "/media/janmashtami/nauka-vihar-1.jpg",
+        "/media/janmashtami/nauka-vihar-3.jpg",
+        "/media/janmashtami/nauka-vihar-2.jpg",
+        "/media/janmashtami/nauka-vihar-8.jpg",
+        "/media/janmashtami/nauka-vihar-4.jpg"
+      ],
+      "id": "a428eae6-133b-49a5-ab2a-d99947d62a68",
+      "createdAt": "2026-11-09T03:15:23.425Z"
+    },
+    {
+      "title": "Navratri",
+      "cover": "/media/insta/mahashtami.jpg",
+      "media": [
+        "/media/insta/navratri-day1.jpg",
+        "/media/insta/navratri-day6.jpg",
+        "/media/insta/durga.jpg",
+        "/media/insta/mahashtami.jpg"
+      ],
+      "id": "261abb5c-5b6b-45aa-954a-80a8e928bf41",
+      "createdAt": "2026-11-09T03:14:23.425Z"
+    },
+    {
+      "title": "Sawan",
+      "cover": "/media/insta/sawan-green.jpg",
+      "media": [
+        "/media/insta/sawan-green.jpg",
+        "/media/insta/sawan-bhasm.jpg",
+        "/media/insta/ardhanarishwar.jpg",
+        "/media/insta/sawan-alaukik.jpg"
+      ],
+      "id": "27054dd8-3df2-4024-8049-a32ec2a52afa",
+      "createdAt": "2026-11-09T03:13:23.425Z"
+    },
+    {
+      "title": "Ganesh Utsav",
+      "cover": "/media/insta/ganesh-chaturthi.jpg",
+      "media": [
+        "/media/insta/ganesh-chaturthi.jpg",
+        "/media/insta/ganesh-swaroop.jpg",
+        "/media/insta/ganesh-chaturthi-2.jpg"
+      ],
+      "id": "b54344d9-340a-48da-98ae-fd3bae832cf2",
+      "createdAt": "2026-11-09T03:12:23.425Z"
+    },
+    {
+      "title": "Bhajan & Seva",
+      "cover": "/media/insta/amarnath-bhajan.jpg",
+      "media": [
+        "/media/insta/amarnath-bhajan.jpg",
+        "/media/insta/sewa-kirtan.jpg",
+        "/media/insta/amarnath-sewa.jpg",
+        "/media/mahakal/mahakal-3.jpg"
+      ],
+      "id": "d91ee452-e2c9-437a-b78a-d794ff59a459",
+      "createdAt": "2026-11-09T03:11:23.425Z"
+    }
+  ],
+  "trips": [
+    {
+      "title": "Ujjain — City of Mahakal",
+      "place": "Ujjain & Omkareshwar, Madhya Pradesh",
+      "date": "2026-08-22",
+      "description": "Our samiti's pilgrimage to Baba Mahakal. We walked the glowing corridors of Shri Mahakal Lok at night, took darshan of Shri Mahakaleshwar Jyotirlinga, visited the ancient temples of the city and continued to Omkareshwar Jyotirlinga on the banks of the Narmada.",
+      "cover": "/media/trips/ujjain-mahakal-lok.jpg",
+      "gallery": [
+        "/media/trips/ujjain-mahakal-lok.jpg",
+        "/media/trips/ujjain-mahakal-lok-2.jpg",
+        "/media/trips/ujjain-corridor.jpg",
+        "/media/trips/ujjain-corridor-night.jpg",
+        "/media/trips/ujjain-jyotirlinga.jpg",
+        "/media/trips/ujjain-temple-ceiling.jpg",
+        "/media/trips/ujjain-devi.jpg",
+        "/media/trips/ujjain-gate.jpg",
+        "/media/trips/omkareshwar.jpg"
+      ],
+      "spots": [
+        "Shri Mahakaleshwar Jyotirlinga",
+        "Shri Mahakal Lok",
+        "Harsiddhi Mata Shaktipeeth",
+        "Kaal Bhairav Temple",
+        "Ram Ghat on the Shipra",
+        "Omkareshwar Jyotirlinga"
+      ],
+      "lat": 23.1828,
+      "lng": 75.7682,
+      "id": "449b31d4-32c5-4efc-a9b1-5a66e702336e",
+      "createdAt": "2026-11-09T03:17:23.425Z"
+    },
+    {
+      "title": "Sehore — Kubereshwar Dham",
+      "place": "Sehore, Madhya Pradesh",
+      "date": "2026-08-22",
+      "description": "A pilgrimage to Kubereshwar Dham in Sehore for Rudrabhishek, bhajan and the darshan of Shri Kubereshwar Mahadev alongside thousands of devotees.",
+      "cover": "/media/trips/sehore-kubereshwar.jpg",
+      "gallery": [
+        "/media/trips/sehore-kubereshwar.jpg",
+        "/media/trips/sehore-temple.jpg"
+      ],
+      "spots": [
+        "Kubereshwar Dham",
+        "Rudrabhishek",
+        "Evening bhajan"
+      ],
+      "lat": 23.2032,
+      "lng": 77.0844,
+      "id": "76c5411f-2f7e-489a-b08c-fa4cf24dbeba",
+      "createdAt": "2026-11-09T03:16:23.425Z"
+    },
+    {
+      "title": "ISKCON & Kalkaji — Delhi",
+      "place": "Kalkaji, New Delhi",
+      "date": "2026-07-28",
+      "description": "Hare Krishna! The samiti visited Sri Sri Radha Parthasarathi Mandir (ISKCON Delhi) for kirtan and darshan, and took the blessings of Maa Kalka at the ancient Kalkaji Mandir.",
+      "cover": "/media/trips/iskcon-altar.jpg",
+      "gallery": [
+        "/media/trips/iskcon-altar.jpg",
+        "/media/trips/iskcon-altar-2.jpg",
+        "/media/trips/iskcon-altar-3.jpg",
+        "/media/trips/kalkaji-mata.jpg"
+      ],
+      "spots": [
+        "Sri Sri Radha Parthasarathi Mandir (ISKCON)",
+        "Kalkaji Mandir",
+        "Harinaam Kirtan",
+        "Prasadam"
+      ],
+      "lat": 28.5559,
+      "lng": 77.2442,
+      "id": "e54a9114-692b-4f1c-9c57-2d13efdf17b8",
+      "createdAt": "2026-11-09T03:15:23.425Z"
+    }
+  ],
+  "gallery": [
+    {
+      "title": "Ardhanarishwar",
+      "src": "/media/insta/ardhanarishwar.jpg",
+      "category": "Shiv Shringar",
+      "id": "e1b60a16-e798-4075-87f7-e2f16bfbbd22",
+      "createdAt": "2026-11-09T03:17:23.425Z"
+    },
+    {
+      "title": "Shiv Shobha Yatra",
+      "src": "/media/insta/shobha-yatra-12.jpg",
+      "category": "Shobha Yatra",
+      "id": "9926ca7e-85e0-417f-bd78-9659b9576b27",
+      "createdAt": "2026-11-09T03:16:23.425Z"
+    },
+    {
+      "title": "Mahagauri",
+      "src": "/media/insta/mahashtami.jpg",
+      "category": "Navratri",
+      "id": "ec74101a-eb7b-4694-86e2-6dd6227777a1",
+      "createdAt": "2026-11-09T03:15:23.425Z"
+    },
+    {
+      "title": "Kaal Bhairav",
+      "src": "/media/insta/kaal-bhairav-tiger.jpg",
+      "category": "Shiv Shringar",
+      "id": "178049eb-8b9c-4447-b522-caeefbd972bc",
+      "createdAt": "2026-11-09T03:14:23.425Z"
+    },
+    {
+      "title": "Krishna Nauka Vihar",
+      "src": "/media/janmashtami/nauka-vihar-1.jpg",
+      "category": "Janmashtami",
+      "id": "4c618372-a500-4210-beae-1b52a697645c",
+      "createdAt": "2026-11-09T03:13:23.425Z"
+    },
+    {
+      "title": "Shri Ganesh",
+      "src": "/media/insta/ganesh-chaturthi.jpg",
+      "category": "Festivals",
+      "id": "86e548d0-ed32-49d1-a5aa-6fa80707aaa9",
+      "createdAt": "2026-11-09T03:12:23.425Z"
+    },
+    {
+      "title": "Mahakali Jhanki",
+      "src": "/media/insta/shobha-yatra-4.jpg",
+      "category": "Shobha Yatra",
+      "id": "edcb8e35-7c62-4fbc-a1b1-5d2c61355a10",
+      "createdAt": "2026-11-09T03:11:23.425Z"
+    },
+    {
+      "title": "Rudra with Mundmala",
+      "src": "/media/insta/rudra-skulls.jpg",
+      "category": "Shiv Shringar",
+      "id": "02e30756-14ed-41cd-987b-e89bffe1eb6e",
+      "createdAt": "2026-11-09T03:10:23.425Z"
+    },
+    {
+      "title": "Baba Barfani",
+      "src": "/media/insta/barfani.jpg",
+      "category": "Festivals",
+      "id": "f382a3f3-22e3-4d9b-b9f4-798ea8ea2fb7",
+      "createdAt": "2026-11-09T03:09:23.425Z"
+    },
+    {
+      "title": "Mahadev as Mata",
+      "src": "/media/insta/mata-swaroop-2.jpg",
+      "category": "Navratri",
+      "id": "dc9e91d8-c4d1-4f3b-ae07-f3f3cf11974f",
+      "createdAt": "2026-11-09T03:08:23.425Z"
+    },
+    {
+      "title": "Evening Shivling Shringar",
+      "src": "/media/temple/shivling-hero.jpg",
+      "category": "Shiv Shringar",
+      "id": "9acb3cd3-8d49-4045-8b04-9d6dd840fd41",
+      "createdAt": "2026-11-09T03:07:23.425Z"
+    },
+    {
+      "title": "Hanuman Swaroop",
+      "src": "/media/insta/hanuman.jpg",
+      "category": "Shiv Shringar",
+      "id": "f20559d6-4ec3-4217-8e4b-af0fd0f5ffe9",
+      "createdAt": "2026-11-09T03:06:23.425Z"
+    },
+    {
+      "title": "Aghori Fire Dance",
+      "src": "/media/insta/shobha-yatra-5.jpg",
+      "category": "Shobha Yatra",
+      "id": "5232fe83-15d9-476f-b4ee-07365f96a9f5",
+      "createdAt": "2026-11-09T03:05:23.425Z"
+    },
+    {
+      "title": "Shri Radha Roop",
+      "src": "/media/insta/radha.jpg",
+      "category": "Festivals",
+      "id": "147dd9f4-673a-4737-8f4f-bf88722e5ef0",
+      "createdAt": "2026-11-09T03:04:23.425Z"
+    },
+    {
+      "title": "Sawan Bhasm Shringar",
+      "src": "/media/insta/sawan-bhasm.jpg",
+      "category": "Shiv Shringar",
+      "id": "fd277900-e35b-48b2-9dbc-9914231d7521",
+      "createdAt": "2026-11-09T03:03:23.425Z"
+    },
+    {
+      "title": "Kirtan at the Mandir",
+      "src": "/media/insta/sewa-kirtan.jpg",
+      "category": "Seva",
+      "id": "76dc5f24-bcea-40d8-ad29-3d7a85593405",
+      "createdAt": "2026-11-09T03:02:23.425Z"
+    }
+  ],
+  "schedule": [
+    {
+      "title": "Mangal Aarti & Jalabhishek",
+      "time": "6:00 AM",
+      "day": "Daily",
+      "description": "Morning aarti and jalabhishek of the Shivling.",
+      "id": "5a3742fd-eaf4-43d5-9de9-6fad7ad5bc62",
+      "createdAt": "2026-11-09T03:17:23.425Z"
+    },
+    {
+      "title": "Rudrabhishek",
+      "time": "7:30 AM",
+      "day": "Monday",
+      "description": "Rudrabhishek with Rudri path every Monday.",
+      "id": "c3764f99-d7b7-49fa-8dc1-76c277e52384",
+      "createdAt": "2026-11-09T03:16:23.425Z"
+    },
+    {
+      "title": "Shringar Seva",
+      "time": "7:30 PM",
+      "day": "Daily",
+      "description": "Our sewaks begin the evening shringar of Mahadev and Mata Rani.",
+      "id": "09aa1f41-5062-4138-ba98-9b16a5e7c25e",
+      "createdAt": "2026-11-09T03:15:23.425Z"
+    },
+    {
+      "title": "Bhajan Sandhya",
+      "time": "8:00 PM",
+      "day": "Tuesday",
+      "description": "Hanuman Chalisa, Sunderkand path and bhajan-kirtan.",
+      "id": "52cf8e3e-a689-4ff3-8f27-9a7a96436be8",
+      "createdAt": "2026-11-09T03:14:23.425Z"
+    },
+    {
+      "title": "Shringar Darshan",
+      "time": "9:00 PM",
+      "day": "Daily",
+      "description": "The curtains open for darshan of the day's shringar.",
+      "id": "834ebf74-7c71-43e8-ad56-c64fc590c85b",
+      "createdAt": "2026-11-09T03:13:23.425Z"
+    },
+    {
+      "title": "Shayan Aarti",
+      "time": "9:15 PM",
+      "day": "Daily",
+      "description": "Night aarti, followed by prasad.",
+      "id": "9eeccd2a-e43c-419a-9b6b-f5693dd1ef4b",
+      "createdAt": "2026-11-09T03:12:23.425Z"
+    }
+  ],
+  "messages": []
+}

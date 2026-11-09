@@ -9,8 +9,9 @@ const trip = (name: string) => `/media/trips/${name}.jpg`;
 const sy = (n: number) => ig(`shobha-yatra-${n}`);
 const mk = (n: number) => `/media/mahakal/mahakal-${n}.jpg`;
 const jm = (n: number) => `/media/janmashtami/nauka-vihar-${n}.jpg`;
-const reel = (code: string) => `https://www.instagram.com/reel/${code}/`;
-const post = (code: string) => `https://www.instagram.com/p/${code}/`;
+/** Reels are hosted on our own server so they play right on the website. */
+const clip = (code: string) => `/media/reels/${code}.mp4`;
+const tclip = (name: string) => `/media/trips/${name}.mp4`;
 
 export const seedSettings: Settings = {
   siteName: "Shiv Shringar",
@@ -151,14 +152,14 @@ export const seedItems: Seed = {
     },
   ],
   videos: [
-    { title: "Shiv Shobha Yatra", url: post("Db3CAxZsAo6"), poster: sy(4), category: "Festival", featured: true },
-    { title: "Janmashtami Nauka Vihar", url: post("Dc5sNoDT1Ug"), poster: jm(1), category: "Festival", featured: false },
-    { title: "Baba Barfani Hima Shringar", url: post("DauglO3z66U"), poster: ig("barfani"), category: "Shringar", featured: false },
-    { title: "Mahakal Form", url: post("DZiS7wbz3Ys"), poster: mk(1), category: "Shringar", featured: false },
-    { title: "Mahashtami — Mata Rani", url: post("DeqhtYKpWsR"), poster: ig("mahashtami"), category: "Navratri", featured: false },
-    { title: "Kaal Bhairav Roop", url: post("DeIzmh3zb0L"), poster: ig("kaal-bhairav"), category: "Shringar", featured: false },
-    { title: "Radhashtami — Radha Roop", url: post("DdfvwRqzAD-"), poster: ig("radha"), category: "Festival", featured: false },
-    { title: "Hanuman Swaroop", url: post("DdVcMWXTPQP"), poster: ig("hanuman"), category: "Shringar", featured: false },
+    { title: "Shiv Shobha Yatra", url: clip("Db3CAxZsAo6"), poster: sy(4), category: "Festival", featured: true },
+    { title: "Janmashtami Nauka Vihar", url: clip("Dc5sNoDT1Ug"), poster: jm(1), category: "Festival", featured: false },
+    { title: "Baba Barfani Hima Shringar", url: clip("DauglO3z66U"), poster: ig("barfani"), category: "Shringar", featured: false },
+    { title: "Mahakal Form", url: clip("DZiS7wbz3Ys"), poster: mk(1), category: "Shringar", featured: false },
+    { title: "Mahashtami — Mata Rani", url: clip("DeqhtYKpWsR"), poster: ig("mahashtami"), category: "Navratri", featured: false },
+    { title: "Kaal Bhairav Roop", url: clip("DeIzmh3zb0L"), poster: ig("kaal-bhairav"), category: "Shringar", featured: false },
+    { title: "Radhashtami — Radha Roop", url: clip("DdfvwRqzAD-"), poster: ig("radha"), category: "Festival", featured: false },
+    { title: "Hanuman Swaroop", url: clip("DdVcMWXTPQP"), poster: ig("hanuman"), category: "Shringar", featured: false },
   ],
   shringar: [
     {
@@ -172,19 +173,19 @@ export const seedItems: Seed = {
       video: "/media/darshan/diwali-shringar.mp4",
       gallery: [2, 4, 3, 5, 6, 7, 8, 9, 10, 11].map((n) => `/media/darshan/diwali-${n}.jpg`),
     },
-    { title: "Mahagauri — Mahashtami", deity: "Mata Rani", occasion: "Navratri", date: "2026-10-19", image: ig("mahashtami"), description: "On Mahashtami the Shivling took the gentle form of Mata Mahagauri — pink chunari, nath, bindi and a crown of marigold.", video: reel("DeqhtYKpWsR") },
-    { title: "Katyayani — Navratri Day 6", deity: "Mata Rani", occasion: "Navratri", date: "2026-10-17", image: ig("navratri-day6"), description: "A blue chunari and golden nath for Maa Katyayani on the sixth day of Navratri.", video: reel("DelMkAzprNq") },
-    { title: "Kaal Bhairav", deity: "Mahadev", occasion: "Special Shringar", date: "2026-10-06", image: ig("kaal-bhairav"), description: "Bholenath adorned as Kaal Bhairav — a fierce, glowing form that holds the eyes of every devotee.", video: reel("DeIzmh3zb0L") },
-    { title: "Maa Durga Roop", deity: "Mahadev", occasion: "Navratri", date: "2026-10-05", image: ig("durga"), description: "Bhole Bhandari in the image of Maa Durga — a rare and beautiful Shiv-Shakti shringar.", video: reel("DeGUkDHSlCd") },
+    { title: "Mahagauri — Mahashtami", deity: "Mata Rani", occasion: "Navratri", date: "2026-10-19", image: ig("mahashtami"), description: "On Mahashtami the Shivling took the gentle form of Mata Mahagauri — pink chunari, nath, bindi and a crown of marigold.", video: clip("DeqhtYKpWsR") },
+    { title: "Katyayani — Navratri Day 6", deity: "Mata Rani", occasion: "Navratri", date: "2026-10-17", image: ig("navratri-day6"), description: "A blue chunari and golden nath for Maa Katyayani on the sixth day of Navratri.", video: clip("DelMkAzprNq") },
+    { title: "Kaal Bhairav", deity: "Mahadev", occasion: "Special Shringar", date: "2026-10-06", image: ig("kaal-bhairav"), description: "Bholenath adorned as Kaal Bhairav — a fierce, glowing form that holds the eyes of every devotee.", video: clip("DeIzmh3zb0L") },
+    { title: "Maa Durga Roop", deity: "Mahadev", occasion: "Navratri", date: "2026-10-05", image: ig("durga"), description: "Bhole Bhandari in the image of Maa Durga — a rare and beautiful Shiv-Shakti shringar.", video: clip("DeGUkDHSlCd") },
     { title: "Chandra & Sheshnag", deity: "Mahadev", occasion: "Daily Shringar", date: "2026-10-04", image: ig("moon-cobra"), description: "A silver crescent, Sheshnag and white flowers — the classic serene form of Mahadev." },
-    { title: "Shri Radha Roop", deity: "Mahadev", occasion: "Radhashtami", date: "2026-09-20", image: ig("radha"), description: "On Radhashtami the Shivling was adorned as Shri Radha — peacock feathers, yellow chunari and love.", video: reel("DdfvwRqzAD-") },
+    { title: "Shri Radha Roop", deity: "Mahadev", occasion: "Radhashtami", date: "2026-09-20", image: ig("radha"), description: "On Radhashtami the Shivling was adorned as Shri Radha — peacock feathers, yellow chunari and love.", video: clip("DdfvwRqzAD-") },
     { title: "Shri Ganesh Roop", deity: "Mahadev", occasion: "Ganesh Utsav", date: "2026-09-17", image: ig("ganesh-swaroop"), description: "Shiv mein Ganesh, Ganesh mein Shiv — Mahadev adorned as Vighnaharta with a tiger-skin vastra." },
-    { title: "Hanuman Swaroop", deity: "Mahadev", occasion: "Mangalvar", date: "2026-09-16", image: ig("hanuman"), description: "On a Tuesday, Bholenath was adorned as Shri Hanuman — sindoor face and a golden mukut.", video: reel("DdVcMWXTPQP") },
+    { title: "Hanuman Swaroop", deity: "Mahadev", occasion: "Mangalvar", date: "2026-09-16", image: ig("hanuman"), description: "On a Tuesday, Bholenath was adorned as Shri Hanuman — sindoor face and a golden mukut.", video: clip("DdVcMWXTPQP") },
     { title: "Ardhanarishwar", deity: "Mahadev", occasion: "Sawan", date: "2026-08-12", image: ig("ardhanarishwar"), description: "Half Shiv, half Shakti — Mahadev's Ardhanarishwar form, one of the most loved shringars of our samiti." },
     { title: "Sawan Pratham Somvar", deity: "Mahadev", occasion: "Sawan", date: "2026-08-04", image: ig("sawan-green"), description: "A green Rudra roop with jasmine and roses for the first Monday of Sawan." },
     { title: "Bhasm & Vyaghra Charm", deity: "Mahadev", occasion: "Sawan", date: "2026-07-19", image: ig("kaal-bhairav-tiger"), description: "Bhasm ki maya, phoolon ki kaya — tiger skin, a silver crescent and the third eye." },
     { title: "Mahadev as Mata Rani", deity: "Mahadev", occasion: "Special Shringar", date: "2026-07-18", image: ig("mata-swaroop"), description: "Mahadev adorned in the sacred form of Mata — red chunari, pearls and gold." },
-    { title: "Baba Barfani", deity: "Mahadev", occasion: "Hima Shringar", date: "2026-07-13", image: ig("barfani"), description: "Baba Barfani — a mountain of real ice shaped over the Shivling by our sewaks, adorned with marigold and rudraksha.", video: reel("DauglO3z66U") },
+    { title: "Baba Barfani", deity: "Mahadev", occasion: "Hima Shringar", date: "2026-07-13", image: ig("barfani"), description: "Baba Barfani — a mountain of real ice shaped over the Shivling by our sewaks, adorned with marigold and rudraksha.", video: clip("DauglO3z66U") },
   ],
   highlights: [
     { title: "Shobha Yatra", cover: sy(4), media: [sy(12), sy(4), sy(5), sy(7), sy(1), ig("shobha-yatra-poster")] },
@@ -203,7 +204,8 @@ export const seedItems: Seed = {
       description:
         "Our samiti's pilgrimage to Baba Mahakal. We walked the glowing corridors of Shri Mahakal Lok at night, took darshan of Shri Mahakaleshwar Jyotirlinga, visited the ancient temples of the city and continued to Omkareshwar Jyotirlinga on the banks of the Narmada.",
       cover: trip("ujjain-mahakal-lok"),
-      gallery: [trip("ujjain-mahakal-lok"), trip("ujjain-mahakal-lok-2"), trip("ujjain-corridor"), trip("ujjain-corridor-night"), trip("ujjain-jyotirlinga"), trip("ujjain-temple-ceiling"), trip("ujjain-devi"), trip("ujjain-gate"), trip("omkareshwar")],
+      gallery: [trip("ujjain-mahakal-lok"), trip("ujjain-mahakal-lok-2"), trip("ujjain-corridor"), trip("ujjain-corridor-night"), trip("ujjain-jyotirlinga"), trip("ujjain-temple-ceiling"), trip("ujjain-devi"), trip("ujjain-gate"), trip("omkareshwar"), tclip("ujjain-clip-1"), tclip("ujjain-clip-3"), tclip("omkareshwar-clip-1"), tclip("omkareshwar-clip-2"), tclip("omkareshwar-clip-3"), tclip("omkareshwar-clip-4")],
+      video: tclip("ujjain-clip-2"),
       spots: [
         "Shri Mahakaleshwar Jyotirlinga",
         "Shri Mahakal Lok",
@@ -222,6 +224,7 @@ export const seedItems: Seed = {
       description: "A pilgrimage to Kubereshwar Dham in Sehore for Rudrabhishek, bhajan and the darshan of Shri Kubereshwar Mahadev alongside thousands of devotees.",
       cover: trip("sehore-kubereshwar"),
       gallery: [trip("sehore-kubereshwar"), trip("sehore-temple")],
+      video: tclip("sehore-clip-1"),
       spots: ["Kubereshwar Dham", "Rudrabhishek", "Evening bhajan"],
       lat: 23.2032,
       lng: 77.0844,
@@ -232,7 +235,8 @@ export const seedItems: Seed = {
       date: "2026-07-28",
       description: "Hare Krishna! The samiti visited Sri Sri Radha Parthasarathi Mandir (ISKCON Delhi) for kirtan and darshan, and took the blessings of Maa Kalka at the ancient Kalkaji Mandir.",
       cover: trip("iskcon-altar"),
-      gallery: [trip("iskcon-altar"), trip("iskcon-altar-2"), trip("iskcon-altar-3"), trip("kalkaji-mata")],
+      gallery: [trip("iskcon-altar"), trip("iskcon-altar-2"), trip("iskcon-altar-3"), trip("kalkaji-mata"), tclip("iskcon-clip-1")],
+      video: tclip("iskcon-clip-2"),
       spots: ["Sri Sri Radha Parthasarathi Mandir (ISKCON)", "Kalkaji Mandir", "Harinaam Kirtan", "Prasadam"],
       lat: 28.5559,
       lng: 77.2442,

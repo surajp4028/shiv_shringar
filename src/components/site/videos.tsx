@@ -5,8 +5,7 @@ import { IconBrandInstagram, IconBrandYoutube } from "@tabler/icons-react";
 import { Scroller } from "./scroller";
 import { SectionHeading } from "./section-heading";
 import { VideoPlayer } from "./video-player";
-import { Modal } from "./modal";
-import { embedUrl, mediaKind } from "@/lib/media";
+import { VideoModal } from "./video-modal";
 import type { Settings, VideoItem } from "@/lib/types";
 
 export function Videos({ items, settings }: { items: VideoItem[]; settings: Settings }) {
@@ -57,18 +56,7 @@ export function Videos({ items, settings }: { items: VideoItem[]; settings: Sett
         </Scroller>
       </div>
 
-      <Modal open={!!open} onClose={() => setOpen(null)} className="max-w-[420px]">
-        {open &&
-          (mediaKind(open.url) === "instagram" ? (
-            <iframe src={embedUrl(open.url)} title={open.title} className="h-[80vh] w-full rounded-2xl bg-white" allow="autoplay; encrypted-media" />
-          ) : mediaKind(open.url) === "image" ? (
-            <img src={open.url} alt={open.title} className="max-h-[85vh] w-full rounded-2xl object-contain" />
-          ) : (
-            <a href={open.url} target="_blank" rel="noreferrer" className="block rounded-2xl bg-neutral-900 p-8 text-center text-amber-200">
-              Open video ↗
-            </a>
-          ))}
-      </Modal>
+      <VideoModal url={open?.url ?? null} title={open?.title} onClose={() => setOpen(null)} />
     </section>
   );
 }

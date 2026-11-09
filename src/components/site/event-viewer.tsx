@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { IconCalendarEvent, IconClock, IconMapPin, IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import { formatDate, isVideo } from "@/lib/media";
 import type { EventItem } from "@/lib/types";
-import { Swipe } from "./swipe";
+import { Slides } from "./slides";
 
 export const photosOf = (e: EventItem) => [...new Set([e.image, ...(e.gallery ?? [])].filter(Boolean))];
 
@@ -32,9 +32,13 @@ export function EventViewer({ event, start = 0 }: { event: EventItem; start?: nu
   return (
     <div className="max-h-[92vh] overflow-y-auto rounded-3xl bg-white">
       <div className="relative bg-stone-950">
-        <Swipe onPrev={() => step(-1)} onNext={() => step(1)} enabled={photos.length > 1}>
-          <MediaImg key={photos[i]} src={photos[i]} alt={event.title} className="mx-auto max-h-[62vh] w-full object-contain" />
-        </Swipe>
+        <Slides
+          items={photos}
+          index={i}
+          onIndex={setI}
+          className="h-[48vh] sm:h-[60vh]"
+          render={(p) => <MediaImg src={p} alt={event.title} className="h-full w-full object-contain" />}
+        />
         {photos.length > 1 && (
           <>
             <button onClick={() => step(-1)} aria-label="Previous photo" className="absolute top-1/2 left-3 -translate-y-1/2 rounded-full bg-white/90 p-2.5 text-stone-800 shadow-lg">

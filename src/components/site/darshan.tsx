@@ -6,9 +6,10 @@ import { SectionHeading } from "./section-heading";
 import { Modal } from "./modal";
 import { Scroller } from "./scroller";
 import { MediaImg } from "./event-viewer";
+import { VideoModal } from "./video-modal";
 import { embedUrl, formatDate, mediaKind } from "@/lib/media";
 import type { ShringarItem } from "@/lib/types";
-import { Swipe } from "./swipe";
+import { Slides } from "./slides";
 
 const photosOf = (s: ShringarItem) => [...new Set([s.image, ...(s.gallery ?? [])].filter(Boolean))];
 
@@ -49,9 +50,13 @@ function PhotoViewer({ photos, start, title }: { photos: string[]; start: number
   const step = (d: number) => setI((x) => (x + d + photos.length) % photos.length);
   return (
     <div className="relative overflow-hidden rounded-3xl bg-stone-950">
-      <Swipe onPrev={() => step(-1)} onNext={() => step(1)} enabled={photos.length > 1}>
-        <MediaImg key={photos[i]} src={photos[i]} alt={title} className="mx-auto max-h-[80vh] w-full object-contain" />
-      </Swipe>
+      <Slides
+        items={photos}
+        index={i}
+        onIndex={setI}
+        className="h-[70vh] sm:h-[80vh]"
+        render={(p) => <MediaImg src={p} alt={title} className="h-full w-full object-contain" />}
+      />
       {photos.length > 1 && (
         <>
           <button onClick={() => step(-1)} aria-label="Previous" className="absolute top-1/2 left-3 -translate-y-1/2 rounded-full bg-white/90 p-2.5 text-stone-800 shadow-lg"><IconChevronLeft size={20} /></button>
@@ -66,6 +71,7 @@ function PhotoViewer({ photos, start, title }: { photos: string[]; start: number
 export function Darshan({ items }: { items: ShringarItem[] }) {
   const [open, setOpen] = useState<ShringarItem | null>(null);
   const [viewer, setViewer] = useState<{ photos: string[]; i: number; title: string } | null>(null);
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
   if (items.length === 0) return null;
   const sorted = [...items].sort((a, b) => (b.date || "").localeCompare(a.date || ""));
   const [today, ...rest] = sorted;
@@ -94,14 +100,14 @@ export function Darshan({ items }: { items: ShringarItem[] }) {
                 {playable ? (
                   <DarshanVideo src={today.video!} poster={today.image} />
                 ) : today.video ? (
-                  <a href={today.video} target="_blank" rel="noreferrer" className="group relative block h-full w-full">
+                  <button type="button" onClick={() => setVideoUrl(today.video!)} className="group relative block h-full w-full">
                     <img src={today.image} alt={today.title} className="h-full w-full object-cover" />
                     <span className="absolute inset-0 bg-black/25 transition group-hover:bg-black/35" />
                     <span className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full bg-white/90 px-5 py-3 text-sm font-semibold text-stone-900 shadow-xl">
                       {vKind === "instagram" ? <IconBrandInstagram size={18} className="text-pink-600" /> : <IconPlayerPlayFilled size={18} className="text-orange-600" />}
                       Watch the video
                     </span>
-                  </a>
+                  </button>
                 ) : (
                   <button onClick={() => setViewer({ photos, i: 0, title: today.title })} className="block h-full w-full">
                     <img src={today.image} alt={today.title} className="h-full w-full object-cover" />
@@ -211,15 +217,16 @@ export function Darshan({ items }: { items: ShringarItem[] }) {
               <p className="mt-2 text-sm text-stone-500">{formatDate(open.date)}</p>
               <p className="mt-6 leading-relaxed text-stone-700">{open.description}</p>
               {open.video && mediaKind(open.video) !== "file" && mediaKind(open.video) !== "youtube" && (
-                <a
-                  href={open.video}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-amber-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5"
+                <button
+                  type="button"
+                  onClick={() => {
+                    setVideoUrl(open.video!);
+                    setOpen(null);
+                  }}
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-red-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5"
                 >
-                  {mediaKind(open.video) === "instagram" ? <IconBrandInstagram size={18} /> : <IconPlayerPlayFilled size={16} />}
-                  {mediaKind(open.video) === "instagram" ? "Watch on Instagram" : "Watch the video"}
-                </a>
+                  <IconPlayerPlayFilled size={16} /> Watch the video
+                </button>
               )}
               {(open.gallery?.length ?? 0) > 0 && (
                 <button onClick={() => { setViewer({ photos: photosOf(open), i: 0, title: open.title }); setOpen(null); }} className="mt-6 flex items-center gap-2 text-sm font-semibold text-orange-600">
@@ -233,6 +240,7 @@ export function Darshan({ items }: { items: ShringarItem[] }) {
       <Modal open={!!viewer} onClose={() => setViewer(null)} className="max-w-5xl">
         {viewer && <PhotoViewer key={viewer.title + viewer.i} photos={viewer.photos} start={viewer.i} title={viewer.title} />}
       </Modal>
+      <VideoModal url={videoUrl} onClose={() => setVideoUrl(null)} />
     </section>
   );
 }

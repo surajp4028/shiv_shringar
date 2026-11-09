@@ -70,7 +70,7 @@ export function VideoPlayer({
     <div ref={wrap} className={cn("relative overflow-hidden bg-neutral-900", className)}>
       {kind === "file" && (
         <>
-          <video ref={video} src={url} poster={poster || undefined} muted loop playsInline preload="metadata" className="h-full w-full object-cover" />
+          <video ref={video} src={url} poster={poster || undefined} muted loop playsInline preload="metadata" className={`h-full w-full object-cover${onOpen ? " cursor-pointer" : ""}`} onClick={onOpen} />
           {muteBtn}
         </>
       )}
