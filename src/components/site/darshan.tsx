@@ -8,6 +8,7 @@ import { Scroller } from "./scroller";
 import { MediaImg } from "./event-viewer";
 import { embedUrl, formatDate, mediaKind } from "@/lib/media";
 import type { ShringarItem } from "@/lib/types";
+import { Swipe } from "./swipe";
 
 const photosOf = (s: ShringarItem) => [...new Set([s.image, ...(s.gallery ?? [])].filter(Boolean))];
 
@@ -48,7 +49,9 @@ function PhotoViewer({ photos, start, title }: { photos: string[]; start: number
   const step = (d: number) => setI((x) => (x + d + photos.length) % photos.length);
   return (
     <div className="relative overflow-hidden rounded-3xl bg-stone-950">
-      <MediaImg src={photos[i]} alt={title} className="mx-auto max-h-[80vh] w-full object-contain" />
+      <Swipe onPrev={() => step(-1)} onNext={() => step(1)} enabled={photos.length > 1}>
+        <MediaImg key={photos[i]} src={photos[i]} alt={title} className="mx-auto max-h-[80vh] w-full object-contain" />
+      </Swipe>
       {photos.length > 1 && (
         <>
           <button onClick={() => step(-1)} aria-label="Previous" className="absolute top-1/2 left-3 -translate-y-1/2 rounded-full bg-white/90 p-2.5 text-stone-800 shadow-lg"><IconChevronLeft size={20} /></button>

@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IconCalendarEvent, IconClock, IconMapPin, IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import { formatDate, isVideo } from "@/lib/media";
 import type { EventItem } from "@/lib/types";
+import { Swipe } from "./swipe";
 
 export const photosOf = (e: EventItem) => [...new Set([e.image, ...(e.gallery ?? [])].filter(Boolean))];
 
@@ -20,11 +21,20 @@ export function EventViewer({ event, start = 0 }: { event: EventItem; start?: nu
   const photos = photosOf(event);
   const [i, setI] = useState(Math.min(start, photos.length - 1));
   const step = (d: number) => setI((x) => (x + d + photos.length) % photos.length);
+  const strip = useRef<HTMLDivElement>(null);
+
+  // Keep the current thumbnail in view while swiping through photos.
+  useEffect(() => {
+    const el = strip.current?.children[i] as HTMLElement | undefined;
+    el?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  }, [i]);
 
   return (
     <div className="max-h-[92vh] overflow-y-auto rounded-3xl bg-white">
       <div className="relative bg-stone-950">
-        <MediaImg src={photos[i]} alt={event.title} className="mx-auto max-h-[62vh] w-full object-contain" />
+        <Swipe onPrev={() => step(-1)} onNext={() => step(1)} enabled={photos.length > 1}>
+          <MediaImg key={photos[i]} src={photos[i]} alt={event.title} className="mx-auto max-h-[62vh] w-full object-contain" />
+        </Swipe>
         {photos.length > 1 && (
           <>
             <button onClick={() => step(-1)} aria-label="Previous photo" className="absolute top-1/2 left-3 -translate-y-1/2 rounded-full bg-white/90 p-2.5 text-stone-800 shadow-lg">
@@ -40,7 +50,7 @@ export function EventViewer({ event, start = 0 }: { event: EventItem; start?: nu
         )}
       </div>
       {photos.length > 1 && (
-        <div className="no-scrollbar flex gap-2 overflow-x-auto overflow-y-hidden bg-stone-100 p-3">
+        <div ref={strip} className="no-scrollbar flex gap-2 overflow-x-auto overflow-y-hidden bg-stone-100 p-3">
           {photos.map((p, k) => (
             <button
               key={p + k}

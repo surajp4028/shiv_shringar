@@ -150,6 +150,16 @@ function CollectionEditor({ section, notify }: { section: Section; notify: (t: s
     }
   };
 
+  // Distinct values already used for a field in this section (e.g. gallery categories), most used first.
+  const suggestionsFor = (key: string) => {
+    const counts = new Map<string, number>();
+    for (const it of items ?? []) {
+      const v = typeof it[key] === "string" ? (it[key] as string).trim() : "";
+      if (v) counts.set(v, (counts.get(v) ?? 0) + 1);
+    }
+    return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([v]) => v);
+  };
+
   const toggleHidden = async (item: Item) => {
     try {
       await api(`/api/admin/${section.id}/${item.id}`, { method: "PUT", body: JSON.stringify({ hidden: !item.hidden }) });
@@ -168,7 +178,12 @@ function CollectionEditor({ section, notify }: { section: Section; notify: (t: s
           {section.fields.map((f) => (
             <label key={f.key} className={cn("block space-y-2", ["textarea", "list", "mediaList", "media", "image"].includes(f.type) && "md:col-span-2")}>
               <span className="text-sm text-neutral-300">{f.label}{f.required && <span className="text-amber-500"> *</span>}</span>
-              <FieldInput field={f} value={editing[f.key]} onChange={(v) => setEditing({ ...editing, [f.key]: v })} />
+              <FieldInput
+                field={f}
+                value={editing[f.key]}
+                onChange={(v) => setEditing({ ...editing, [f.key]: v })}
+                suggestions={f.suggest ? suggestionsFor(f.key) : undefined}
+              />
               {f.hint && <span className="block text-xs text-neutral-500">{f.hint}</span>}
             </label>
           ))}

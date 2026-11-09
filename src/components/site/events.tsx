@@ -11,6 +11,11 @@ import type { EventItem } from "@/lib/types";
 
 export function Events({ items: all }: { items: EventItem[] }) {
   const [open, setOpen] = useState<EventItem | null>(null);
+  const [start, setStart] = useState(0);
+  const openAt = (e: EventItem, i = 0) => {
+    setStart(i);
+    setOpen(e);
+  };
   // Special events get their own showcase section.
   const items = all.filter((e) => !e.special);
   if (items.length === 0) return null;
@@ -34,7 +39,7 @@ export function Events({ items: all }: { items: EventItem[] }) {
           viewport={{ once: true }}
           className="grid overflow-hidden rounded-[2rem] border border-orange-100 bg-white shadow-[0_40px_80px_-40px_rgba(124,45,18,0.4)] lg:grid-cols-[1.15fr_1fr]"
         >
-          <button onClick={() => setOpen(featured)} className="group relative overflow-hidden text-left">
+          <button onClick={() => openAt(featured)} className="group relative overflow-hidden text-left">
             <Media src={featured.image} alt={featured.title} className="aspect-[4/3] h-full w-full object-cover transition duration-700 group-hover:scale-105 lg:aspect-auto lg:min-h-[30rem]" />
             {featured.date >= today && (
               <span className="absolute top-5 left-5 rounded-full bg-gradient-to-r from-orange-500 to-red-600 px-3 py-1 text-xs font-semibold text-white">Upcoming</span>
@@ -45,7 +50,7 @@ export function Events({ items: all }: { items: EventItem[] }) {
               </span>
             )}
           </button>
-          <div className="flex flex-col justify-center p-6 md:p-10">
+          <div className="flex min-w-0 flex-col justify-center p-6 md:p-10">
             <p className="text-[11px] font-semibold tracking-[0.3em] text-orange-600 uppercase">Featured</p>
             <h3 className="text-sacred mt-3 font-display text-3xl leading-tight font-semibold md:text-5xl">{featured.title}</h3>
             <p className="mt-4 line-clamp-4 leading-relaxed text-stone-600">{featured.description}</p>
@@ -55,20 +60,26 @@ export function Events({ items: all }: { items: EventItem[] }) {
               {featured.location && <span className="flex items-center gap-1.5 rounded-full border border-orange-100 px-3 py-1.5"><IconMapPin size={15} /> {featured.location}</span>}
             </div>
             {fPhotos.length > 1 && (
-              <div className="mt-7 grid grid-cols-4 gap-2">
-                {fPhotos.slice(1, 5).map((p, k) => (
-                  <button key={p} onClick={() => setOpen(featured)} className="group relative aspect-square overflow-hidden rounded-xl">
+              <Scroller
+                className="mt-7"
+                trackClassName="-mx-6 px-6 md:-mx-0 md:px-0"
+                label={
+                  <p className="flex items-center gap-1.5 text-sm font-medium text-stone-500">
+                    <IconPhoto size={15} /> {fPhotos.length} photos — swipe to see all
+                  </p>
+                }
+              >
+                {fPhotos.map((p, k) => (
+                  <button
+                    key={p}
+                    onClick={() => openAt(featured, k)}
+                    className="group relative h-24 w-24 shrink-0 snap-start overflow-hidden rounded-xl md:h-28 md:w-28"
+                  >
                     <Media src={p} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
-                    {k === 3 && fPhotos.length > 5 && (
-                      <span className="absolute inset-0 flex items-center justify-center bg-black/55 font-display text-xl font-semibold text-white">+{fPhotos.length - 5}</span>
-                    )}
                   </button>
                 ))}
-              </div>
+              </Scroller>
             )}
-            <button onClick={() => setOpen(featured)} className="mt-6 flex w-fit items-center gap-1 text-sm font-semibold text-orange-600">
-              View all photos <IconArrowUpRight size={16} />
-            </button>
           </div>
         </motion.div>
 
@@ -79,7 +90,7 @@ export function Events({ items: all }: { items: EventItem[] }) {
               return (
                 <motion.button
                   key={e.id}
-                  onClick={() => setOpen(e)}
+                  onClick={() => openAt(e)}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -113,7 +124,7 @@ export function Events({ items: all }: { items: EventItem[] }) {
       </div>
 
       <Modal open={!!open} onClose={() => setOpen(null)} className="max-w-4xl">
-        {open && <EventViewer key={open.id} event={open} />}
+        {open && <EventViewer key={open.id + start} event={open} start={start} />}
       </Modal>
     </section>
   );

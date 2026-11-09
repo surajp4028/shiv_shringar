@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
-import { IconUpload, IconLoader2, IconX, IconLink, IconPhoto } from "@tabler/icons-react";
+import { IconUpload, IconLoader2, IconX, IconLink, IconPhoto, IconCheck, IconPlus } from "@tabler/icons-react";
 import { MediaLibraryModal } from "./media-library";
 import { SITE_SECTIONS } from "@/lib/sections";
 import { mediaKind, youtubeThumb } from "@/lib/media";
@@ -75,7 +75,75 @@ function LibraryButton({ multiple, only, onPick }: { multiple?: boolean; only?: 
   );
 }
 
-export function FieldInput({ field, value, onChange }: { field: Field; value: unknown; onChange: (v: unknown) => void }) {
+/** Text box that suggests values already used elsewhere in the section. */
+function SuggestInput({ value, onChange, options }: { value: string; onChange: (v: string) => void; options: string[] }) {
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(0);
+  const q = value.trim().toLowerCase();
+  const matches = options.filter((o) => !q || o.toLowerCase().includes(q));
+  const exact = options.some((o) => o.toLowerCase() === q);
+  const pick = (v: string) => {
+    onChange(v);
+    setOpen(false);
+  };
+  return (
+    <div className="relative">
+      <input
+        className={inputCls}
+        value={value}
+        placeholder={options.length ? "Choose or type a new one" : "Type a name"}
+        onFocus={() => setOpen(true)}
+        onClick={() => setOpen(true)}
+        onBlur={() => setTimeout(() => setOpen(false), 120)}
+        onChange={(e) => {
+          onChange(e.target.value);
+          setOpen(true);
+          setActive(0);
+        }}
+        onKeyDown={(e) => {
+          if (!open || !matches.length) return;
+          if (e.key === "ArrowDown") { e.preventDefault(); setActive((a) => (a + 1) % matches.length); }
+          if (e.key === "ArrowUp") { e.preventDefault(); setActive((a) => (a - 1 + matches.length) % matches.length); }
+          if (e.key === "Enter") { e.preventDefault(); pick(matches[active] ?? value); }
+          if (e.key === "Escape") setOpen(false);
+        }}
+      />
+      {open && (matches.length > 0 || (q && !exact)) && (
+        <div className="absolute inset-x-0 top-full z-30 mt-1.5 max-h-60 overflow-y-auto rounded-xl border border-white/10 bg-neutral-900 p-1.5 shadow-2xl">
+          {matches.map((o, i) => (
+            <button
+              key={o}
+              type="button"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => pick(o)}
+              className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm ${i === active ? "bg-amber-500/15 text-amber-100" : "text-neutral-300 hover:bg-white/5"}`}
+            >
+              {o}
+              {o.toLowerCase() === q && <IconCheck size={15} className="text-amber-400" />}
+            </button>
+          ))}
+          {q && !exact && (
+            <div className="flex items-center gap-2 border-t border-white/5 px-3 pt-2 pb-1 text-xs text-neutral-400">
+              <IconPlus size={13} /> “{value.trim()}” will be saved as a new one
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function FieldInput({
+  field,
+  value,
+  onChange,
+  suggestions,
+}: {
+  field: Field;
+  value: unknown;
+  onChange: (v: unknown) => void;
+  suggestions?: string[];
+}) {
   switch (field.type) {
     case "textarea":
       return <textarea className={`${inputCls} min-h-28`} value={(value as string) ?? ""} onChange={(e) => onChange(e.target.value)} />;
@@ -176,6 +244,8 @@ export function FieldInput({ field, value, onChange }: { field: Field; value: un
       );
     }
     default:
+      if (field.suggest && suggestions)
+        return <SuggestInput value={(value as string) ?? ""} onChange={onChange} options={suggestions} />;
       return <input className={inputCls} value={(value as string) ?? ""} onChange={(e) => onChange(e.target.value)} />;
   }
 }

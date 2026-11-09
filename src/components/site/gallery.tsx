@@ -6,6 +6,7 @@ import { SectionHeading } from "./section-heading";
 import { Modal } from "./modal";
 import { isVideo } from "@/lib/media";
 import type { GalleryItem } from "@/lib/types";
+import { Swipe } from "./swipe";
 import { cn } from "@/lib/utils";
 
 export function Gallery({ items }: { items: GalleryItem[] }) {
@@ -71,7 +72,9 @@ export function Gallery({ items }: { items: GalleryItem[] }) {
             {isVideo(current.src) ? (
               <video src={current.src} autoPlay controls playsInline className="max-h-[80vh] rounded-2xl" />
             ) : (
-              <img src={current.src} alt={current.title} className="max-h-[80vh] rounded-2xl object-contain" />
+              <Swipe onPrev={() => step(-1)} onNext={() => step(1)} enabled={shown.length > 1}>
+                <img key={current.src} src={current.src} alt={current.title} className="max-h-[80vh] rounded-2xl object-contain" />
+              </Swipe>
             )}
             <p className="mt-4 font-display text-xl text-white">{current.title}</p>
             {shown.length > 1 && (

@@ -8,6 +8,7 @@ import { SectionHeading } from "./section-heading";
 import { Modal } from "./modal";
 import { embedUrl, formatDate, isVideo, mediaKind } from "@/lib/media";
 import type { Settings, TripItem } from "@/lib/types";
+import { Swipe } from "./swipe";
 
 const INDIA = ["IND"];
 
@@ -90,7 +91,13 @@ export function Yatra({ items, settings }: { items: TripItem[]; settings: Settin
                 ) : isVideo(src) ? (
                   <video key={src} src={src} autoPlay muted loop playsInline controls className="max-h-[60vh] w-full bg-black object-contain" />
                 ) : (
-                  <img src={src} alt={open.title} className="max-h-[60vh] w-full object-contain" />
+                  <Swipe
+                    onPrev={() => setPhoto((p) => (p - 1 + photos.length) % photos.length)}
+                    onNext={() => setPhoto((p) => (p + 1) % photos.length)}
+                    enabled={photos.length > 1}
+                  >
+                    <img key={src} src={src} alt={open.title} className="max-h-[60vh] w-full object-contain" />
+                  </Swipe>
                 )}
                 {photos.length > 1 && (
                   <div className="no-scrollbar flex gap-2 overflow-x-auto overflow-y-hidden p-3">

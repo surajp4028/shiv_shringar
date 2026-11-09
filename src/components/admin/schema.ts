@@ -2,7 +2,15 @@ import type { CollectionName, Settings } from "@/lib/types";
 
 export type FieldType = "text" | "textarea" | "date" | "number" | "bool" | "image" | "media" | "list" | "mediaList" | "sections";
 
-export type Field = { key: string; label: string; type: FieldType; hint?: string; required?: boolean };
+export type Field = {
+  key: string;
+  label: string;
+  type: FieldType;
+  hint?: string;
+  required?: boolean;
+  /** Offer values already used in this section as you type (pick one or type a new one). */
+  suggest?: boolean;
+};
 
 export type Section = {
   id: CollectionName;
@@ -51,7 +59,7 @@ export const sections: Section[] = [
       { key: "title", label: "Title", type: "text", required: true },
       { key: "url", label: "Video (upload, YouTube or Instagram link)", type: "media", required: true },
       { key: "poster", label: "Thumbnail (optional)", type: "image" },
-      { key: "category", label: "Category", type: "text", hint: "Shringar, Aarti, Bhajan, Festival…" },
+      { key: "category", label: "Category", type: "text", hint: "Pick an existing category or type a new one", suggest: true },
       { key: "featured", label: "Featured", type: "bool" },
       { key: "hidden", label: "Hide from website", type: "bool", hint: "Switch on to keep this saved but not show it on the site" },
     ],
@@ -66,8 +74,8 @@ export const sections: Section[] = [
     subtitleKey: "date",
     fields: [
       { key: "title", label: "Roop / title", type: "text", required: true, hint: "Mahakal Roop, Maa Durga Roop…" },
-      { key: "deity", label: "Deity", type: "text", hint: "Mahadev, Mata Rani, Hanuman Ji…" },
-      { key: "occasion", label: "Occasion", type: "text", hint: "Navratri Day 3, Somvar, Mahashivratri…" },
+      { key: "deity", label: "Deity", type: "text", hint: "Mahadev, Mata Rani, Hanuman Ji…", suggest: true },
+      { key: "occasion", label: "Occasion", type: "text", hint: "Navratri Day 3, Somvar, Mahashivratri…", suggest: true },
       { key: "date", label: "Date", type: "date", required: true, hint: "The latest date becomes Darshan of the Day" },
       { key: "image", label: "Main photo", type: "image", required: true },
       { key: "description", label: "Description", type: "textarea" },
@@ -123,7 +131,7 @@ export const sections: Section[] = [
     fields: [
       { key: "title", label: "Caption", type: "text" },
       { key: "src", label: "Photo / video", type: "media", required: true },
-      { key: "category", label: "Category", type: "text", hint: "Shiv Shringar, Mata Rani, Festivals…" },
+      { key: "category", label: "Category", type: "text", hint: "Pick an existing category or type a new one", suggest: true },
       { key: "hidden", label: "Hide from website", type: "bool", hint: "Switch on to keep this saved but not show it on the site" },
     ],
   },
@@ -137,7 +145,7 @@ export const sections: Section[] = [
     fields: [
       { key: "title", label: "Title", type: "text", required: true },
       { key: "time", label: "Time", type: "text", required: true, hint: "9:00 PM" },
-      { key: "day", label: "Day", type: "text", hint: "Daily, Somvar, Mangalvar…" },
+      { key: "day", label: "Day", type: "text", hint: "Daily, Somvar, Mangalvar…", suggest: true },
       { key: "description", label: "Description", type: "text" },
       { key: "hidden", label: "Hide from website", type: "bool", hint: "Switch on to keep this saved but not show it on the site" },
     ],
