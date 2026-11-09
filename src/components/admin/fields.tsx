@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { IconUpload, IconLoader2, IconX, IconLink, IconPhoto, IconCheck, IconPlus } from "@tabler/icons-react";
 import { MediaLibraryModal } from "./media-library";
 import { SITE_SECTIONS } from "@/lib/sections";
-import { mediaKind, youtubeThumb } from "@/lib/media";
+import { mediaKind, youtubeThumb, driveThumb } from "@/lib/media";
 import type { Field } from "./schema";
 
 export const inputCls =
@@ -21,7 +21,7 @@ export async function uploadFiles(files: FileList | File[]): Promise<string[]> {
 export function Thumb({ src, className = "h-full w-full" }: { src: string; className?: string }) {
   const kind = mediaKind(src);
   if (!src) return <div className={`${className} bg-neutral-800`} />;
-  if (kind === "file") return <video src={src} muted playsInline className={`${className} object-cover`} />;
+  if (kind === "file") return driveThumb(src) ? <img src={driveThumb(src)} alt="" className={`${className} object-cover`} /> : <video src={src} muted playsInline className={`${className} object-cover`} />;
   if (kind === "youtube") return <img src={youtubeThumb(src)} alt="" className={`${className} object-cover`} />;
   if (kind === "instagram")
     return <div className={`${className} flex items-center justify-center bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-[10px] font-bold text-white`}>IG</div>;

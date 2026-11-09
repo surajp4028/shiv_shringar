@@ -2,6 +2,7 @@
 import { IconBrandInstagram } from "@tabler/icons-react";
 import { Modal } from "./modal";
 import { embedUrl, mediaKind } from "@/lib/media";
+import { SmartVideo } from "./smart-video";
 
 /**
  * Plays any video link on top of the page — the visitor never leaves the site.
@@ -13,7 +14,7 @@ export function VideoModal({ url, title, onClose }: { url: string | null; title?
   return (
     <Modal open={!!url} onClose={onClose} className={kind === "file" || kind === "youtube" ? "max-w-4xl" : "max-w-[440px]"}>
       {url && kind === "file" && (
-        <video src={url} autoPlay controls playsInline className="max-h-[85vh] w-full rounded-2xl bg-black" />
+        <SmartVideo src={url} autoPlay controls playsInline className="max-h-[85vh] w-full rounded-2xl bg-black" />
       )}
       {url && kind === "youtube" && (
         <iframe

@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { IconBrandInstagram, IconPlayerPlayFilled, IconVolume, IconVolumeOff } from "@tabler/icons-react";
-import { embedUrl, mediaKind, youtubeThumb } from "@/lib/media";
+import { driveThumb, embedUrl, mediaKind, youtubeThumb } from "@/lib/media";
+import { SmartVideo } from "./smart-video";
 import { cn } from "@/lib/utils";
 
 /**
@@ -70,7 +71,7 @@ export function VideoPlayer({
     <div ref={wrap} className={cn("relative overflow-hidden bg-neutral-900", className)}>
       {kind === "file" && (
         <>
-          <video ref={video} src={url} poster={poster || undefined} muted loop playsInline preload="metadata" className={`h-full w-full object-cover${onOpen ? " cursor-pointer" : ""}`} onClick={onOpen} />
+          <SmartVideo ref={video} src={url} poster={poster || driveThumb(url) || undefined} muted loop playsInline preload="metadata" className={`h-full w-full object-cover${onOpen ? " cursor-pointer" : ""}`} onClick={onOpen} />
           {muteBtn}
         </>
       )}

@@ -5,6 +5,7 @@ import { IconArrowRight, IconMapPin, IconVolume, IconVolumeOff, IconFlame, IconC
 import { SiWhatsapp } from "react-icons/si";
 import { FlipWords } from "@/components/ui/flip-words";
 import { embedUrl, mediaKind, waLink } from "@/lib/media";
+import { SmartVideo } from "./smart-video";
 import type { Settings } from "@/lib/types";
 
 const forms = ["Mahakal", "Rudra Roop", "Nau Devi", "Shiv Parivar", "flowers & diyas"];
@@ -79,7 +80,7 @@ function MainMedia({ settings }: { settings: Settings }) {
   if (kind === "file") {
     return (
       <>
-        <video src={settings.heroVideo} autoPlay muted={muted} loop playsInline className="h-full w-full object-cover" />
+        <SmartVideo src={settings.heroVideo} autoPlay muted={muted} loop playsInline className="h-full w-full object-cover" />
         <button
           onClick={() => setMuted(!muted)}
           aria-label={muted ? "Unmute" : "Mute"}

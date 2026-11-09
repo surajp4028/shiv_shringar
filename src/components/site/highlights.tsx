@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { IconChevronLeft, IconChevronRight, IconVolume, IconVolumeOff } from "@tabler/icons-react";
 import { Modal } from "./modal";
 import { isVideo } from "@/lib/media";
+import { SmartVideo } from "./smart-video";
 import type { HighlightItem } from "@/lib/types";
 
 const IMAGE_MS = 5000;
@@ -64,7 +65,7 @@ function StoryViewer({ list, start, onClose }: { list: HighlightItem[]; start: n
       <AnimatePresence mode="wait">
         <motion.div key={src} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0">
           {video ? (
-            <video
+            <SmartVideo
               src={src}
               autoPlay
               muted={muted}

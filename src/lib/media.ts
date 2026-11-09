@@ -15,9 +15,24 @@ export function instagramCode(url: string) {
   return m?.[1] ?? null;
 }
 
+/** Google Drive file id from a share link (/file/d/ID/…, open?id=ID, uc?id=ID). */
+export function driveId(url: string) {
+  if (!/drive\.google\.com|docs\.google\.com/.test(url)) return null;
+  const m = url.match(/\/file\/d\/([\w-]{20,})/) ?? url.match(/[?&]id=([\w-]{20,})/);
+  return m?.[1] ?? null;
+}
+
+/** Preview image of a public Drive video. */
+export const driveThumb = (url: string) => {
+  const id = driveId(url);
+  return id ? `https://drive.google.com/thumbnail?id=${id}&sz=w720` : "";
+};
+
 export function mediaKind(url: string): MediaKind {
   if (!url) return "unknown";
   if (youtubeId(url)) return "youtube";
+  // Public Google Drive videos stream straight into our own player.
+  if (driveId(url)) return "file";
   if (instagramCode(url)) return "instagram";
   if (VIDEO_EXT.test(url) || url.startsWith("/files/videos/")) return "file";
   if (IMAGE_EXT.test(url) || url.startsWith("/files/images/")) return "image";
@@ -25,6 +40,12 @@ export function mediaKind(url: string): MediaKind {
 }
 
 export const isVideo = (url: string) => mediaKind(url) === "file";
+
+/** The address a <video> tag should load: Drive share links become Drive's direct stream. */
+export function videoSrc(url: string) {
+  const id = driveId(url);
+  return id ? `https://drive.usercontent.google.com/download?id=${id}&export=download` : url;
+}
 
 export function embedUrl(url: string, { autoplay = true, muted = true } = {}) {
   const yt = youtubeId(url);

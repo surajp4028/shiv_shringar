@@ -8,6 +8,7 @@ import { Scroller } from "./scroller";
 import { MediaImg } from "./event-viewer";
 import { VideoModal } from "./video-modal";
 import { embedUrl, formatDate, mediaKind } from "@/lib/media";
+import { SmartVideo } from "./smart-video";
 import type { ShringarItem } from "@/lib/types";
 import { Slides } from "./slides";
 
@@ -33,7 +34,7 @@ function DarshanVideo({ src, poster }: { src: string; poster?: string }) {
   }
   return (
     <>
-      <video ref={ref} src={src} poster={poster} autoPlay muted={muted} loop playsInline className="h-full w-full object-cover" />
+      <SmartVideo ref={ref} src={src} poster={poster} autoPlay muted={muted} loop playsInline className="h-full w-full object-cover" />
       <button
         onClick={() => setMuted(!muted)}
         aria-label={muted ? "Unmute" : "Mute"}
@@ -205,7 +206,7 @@ export function Darshan({ items }: { items: ShringarItem[] }) {
         {open && (
           <div className="grid overflow-hidden rounded-3xl bg-white md:grid-cols-2">
             {open.video && mediaKind(open.video) === "file" ? (
-              <video src={open.video} autoPlay muted loop playsInline controls className="max-h-[80vh] w-full bg-black object-contain" />
+              <SmartVideo src={open.video} poster={open.image} autoPlay muted loop playsInline controls className="max-h-[80vh] w-full bg-black object-contain" />
             ) : open.video && mediaKind(open.video) === "youtube" ? (
               <iframe src={embedUrl(open.video)} title={open.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" className="aspect-[9/16] max-h-[80vh] w-full bg-black md:aspect-auto md:h-full" />
             ) : (

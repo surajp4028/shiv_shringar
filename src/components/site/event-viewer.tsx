@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { IconCalendarEvent, IconClock, IconMapPin, IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import { formatDate, isVideo } from "@/lib/media";
+import { SmartVideo } from "./smart-video";
 import type { EventItem } from "@/lib/types";
 import { Slides } from "./slides";
 
@@ -10,7 +11,7 @@ export const photosOf = (e: EventItem) => [...new Set([e.image, ...(e.gallery ??
 export function MediaImg({ src, alt, className }: { src: string; alt: string; className?: string }) {
   if (!src) return <div className={`bg-gradient-to-br from-orange-100 via-orange-200 to-rose-200 ${className}`} />;
   return isVideo(src) ? (
-    <video src={src} autoPlay muted loop playsInline className={className} />
+    <SmartVideo src={src} autoPlay muted loop playsInline className={className} />
   ) : (
     <img src={src} alt={alt} loading="lazy" decoding="async" className={className} />
   );

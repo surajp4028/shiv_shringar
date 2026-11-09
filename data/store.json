@@ -202,7 +202,7 @@
   "videos": [
     {
       "title": "Shiv Shobha Yatra",
-      "url": "https://www.instagram.com/p/Db3CAxZsAo6/",
+      "url": "/media/reels/Db3CAxZsAo6.mp4",
       "poster": "/media/insta/shobha-yatra-4.jpg",
       "category": "Festival",
       "featured": true,
@@ -211,7 +211,7 @@
     },
     {
       "title": "Janmashtami Nauka Vihar",
-      "url": "https://www.instagram.com/p/Dc5sNoDT1Ug/",
+      "url": "/media/reels/Dc5sNoDT1Ug.mp4",
       "poster": "/media/janmashtami/nauka-vihar-1.jpg",
       "category": "Festival",
       "featured": false,
@@ -220,7 +220,7 @@
     },
     {
       "title": "Baba Barfani Hima Shringar",
-      "url": "https://www.instagram.com/p/DauglO3z66U/",
+      "url": "/media/reels/DauglO3z66U.mp4",
       "poster": "/media/insta/barfani.jpg",
       "category": "Shringar",
       "featured": false,
@@ -229,7 +229,7 @@
     },
     {
       "title": "Mahakal Form",
-      "url": "https://www.instagram.com/p/DZiS7wbz3Ys/",
+      "url": "/media/reels/DZiS7wbz3Ys.mp4",
       "poster": "/media/mahakal/mahakal-1.jpg",
       "category": "Shringar",
       "featured": false,
@@ -238,7 +238,7 @@
     },
     {
       "title": "Mahashtami — Mata Rani",
-      "url": "https://www.instagram.com/p/DeqhtYKpWsR/",
+      "url": "/media/reels/DeqhtYKpWsR.mp4",
       "poster": "/media/insta/mahashtami.jpg",
       "category": "Navratri",
       "featured": false,
@@ -247,7 +247,7 @@
     },
     {
       "title": "Kaal Bhairav Roop",
-      "url": "https://www.instagram.com/p/DeIzmh3zb0L/",
+      "url": "/media/reels/DeIzmh3zb0L.mp4",
       "poster": "/media/insta/kaal-bhairav.jpg",
       "category": "Shringar",
       "featured": false,
@@ -256,7 +256,7 @@
     },
     {
       "title": "Radhashtami — Radha Roop",
-      "url": "https://www.instagram.com/p/DdfvwRqzAD-/",
+      "url": "/media/reels/DdfvwRqzAD-.mp4",
       "poster": "/media/insta/radha.jpg",
       "category": "Festival",
       "featured": false,
@@ -265,7 +265,7 @@
     },
     {
       "title": "Hanuman Swaroop",
-      "url": "https://www.instagram.com/p/DdVcMWXTPQP/",
+      "url": "/media/reels/DdVcMWXTPQP.mp4",
       "poster": "/media/insta/hanuman.jpg",
       "category": "Shringar",
       "featured": false,
@@ -304,7 +304,7 @@
       "date": "2026-10-19",
       "image": "/media/insta/mahashtami.jpg",
       "description": "On Mahashtami the Shivling took the gentle form of Mata Mahagauri — pink chunari, nath, bindi and a crown of marigold.",
-      "video": "https://www.instagram.com/reel/DeqhtYKpWsR/",
+      "video": "/media/reels/DeqhtYKpWsR.mp4",
       "id": "1e171aa6-e408-41ed-a4c6-87fbc9c53beb",
       "createdAt": "2026-11-09T03:16:23.425Z"
     },
@@ -315,7 +315,7 @@
       "date": "2026-10-17",
       "image": "/media/insta/navratri-day6.jpg",
       "description": "A blue chunari and golden nath for Maa Katyayani on the sixth day of Navratri.",
-      "video": "https://www.instagram.com/reel/DelMkAzprNq/",
+      "video": "/media/reels/DelMkAzprNq.mp4",
       "id": "617f929f-a187-474e-b689-1519fc646920",
       "createdAt": "2026-11-09T03:15:23.425Z"
     },
@@ -326,7 +326,7 @@
       "date": "2026-10-06",
       "image": "/media/insta/kaal-bhairav.jpg",
       "description": "Bholenath adorned as Kaal Bhairav — a fierce, glowing form that holds the eyes of every devotee.",
-      "video": "https://www.instagram.com/reel/DeIzmh3zb0L/",
+      "video": "/media/reels/DeIzmh3zb0L.mp4",
       "id": "c77e5119-dfbc-43aa-a55e-6d1e223b0a4f",
       "createdAt": "2026-11-09T03:14:23.425Z"
     },
@@ -337,7 +337,7 @@
       "date": "2026-10-05",
       "image": "/media/insta/durga.jpg",
       "description": "Bhole Bhandari in the image of Maa Durga — a rare and beautiful Shiv-Shakti shringar.",
-      "video": "https://www.instagram.com/reel/DeGUkDHSlCd/",
+      "video": "/media/reels/DeGUkDHSlCd.mp4",
       "id": "dd1058e2-02ab-4f1a-9772-3d80f7d54b65",
       "createdAt": "2026-11-09T03:13:23.425Z"
     },
@@ -358,7 +358,7 @@
       "date": "2026-09-20",
       "image": "/media/insta/radha.jpg",
       "description": "On Radhashtami the Shivling was adorned as Shri Radha — peacock feathers, yellow chunari and love.",
-      "video": "https://www.instagram.com/reel/DdfvwRqzAD-/",
+      "video": "/media/reels/DdfvwRqzAD-.mp4",
       "id": "29503e46-25b3-4b43-a899-fcd1cf84d49a",
       "createdAt": "2026-11-09T03:11:23.425Z"
     },
@@ -379,7 +379,7 @@
       "date": "2026-09-16",
       "image": "/media/insta/hanuman.jpg",
       "description": "On a Tuesday, Bholenath was adorned as Shri Hanuman — sindoor face and a golden mukut.",
-      "video": "https://www.instagram.com/reel/DdVcMWXTPQP/",
+      "video": "/media/reels/DdVcMWXTPQP.mp4",
       "id": "ff1e8fc1-1363-442f-9eed-020e24b823d5",
       "createdAt": "2026-11-09T03:09:23.425Z"
     },
@@ -430,7 +430,7 @@
       "date": "2026-07-13",
       "image": "/media/insta/barfani.jpg",
       "description": "Baba Barfani — a mountain of real ice shaped over the Shivling by our sewaks, adorned with marigold and rudraksha.",
-      "video": "https://www.instagram.com/reel/DauglO3z66U/",
+      "video": "/media/reels/DauglO3z66U.mp4",
       "id": "158affe6-4575-4e7f-85b9-aa51ba0f2b6c",
       "createdAt": "2026-11-09T03:04:23.425Z"
     }

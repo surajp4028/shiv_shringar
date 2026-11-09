@@ -6,7 +6,8 @@ import WorldMap from "@/components/ui/world-map";
 import { useMounted } from "@/hooks/use-mounted";
 import { SectionHeading } from "./section-heading";
 import { Modal } from "./modal";
-import { embedUrl, formatDate, isVideo, mediaKind } from "@/lib/media";
+import { driveThumb, embedUrl, formatDate, isVideo, mediaKind } from "@/lib/media";
+import { SmartVideo } from "./smart-video";
 import type { Settings, TripItem } from "@/lib/types";
 import { Slides } from "./slides";
 import { VideoModal } from "./video-modal";
@@ -105,7 +106,7 @@ export function Yatra({ items, settings }: { items: TripItem[]; settings: Settin
                       mediaKind(src) === "youtube" ? (
                         active ? <iframe src={embedUrl(src)} title={open.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" className="aspect-video w-full" /> : null
                       ) : isVideo(src) ? (
-                        active ? <video src={src} autoPlay muted loop playsInline controls className="h-full w-full object-contain" /> : null
+                        active ? <SmartVideo src={src} poster={driveThumb(src) || undefined} autoPlay muted loop playsInline controls className="h-full w-full object-contain" /> : null
                       ) : (
                         <img src={src} alt={open.title} decoding="async" className="h-full w-full object-contain" />
                       )
@@ -125,7 +126,11 @@ export function Yatra({ items, settings }: { items: TripItem[]; settings: Settin
                       <button key={p + k} onClick={() => setPhoto(k)} className={`h-14 w-14 shrink-0 overflow-hidden rounded-xl border-2 transition sm:h-16 sm:w-16 ${k === photo ? "border-orange-500" : "border-transparent opacity-50 hover:opacity-100"}`}>
                         {isVideo(p) || mediaKind(p) === "youtube" ? (
                           <span className="relative block h-full w-full bg-stone-700">
-                            {isVideo(p) && <video src={p + "#t=1"} muted playsInline preload="metadata" className="h-full w-full object-cover" />}
+                            {driveThumb(p) ? (
+                              <img src={driveThumb(p)} alt="" loading="lazy" className="h-full w-full object-cover" />
+                            ) : (
+                              isVideo(p) && <video src={p + "#t=1"} muted playsInline preload="metadata" className="h-full w-full object-cover" />
+                            )}
                             <span className="absolute inset-0 flex items-center justify-center bg-black/30 text-white"><IconPlayerPlayFilled size={16} /></span>
                           </span>
                         ) : (

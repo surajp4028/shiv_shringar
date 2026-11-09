@@ -5,6 +5,7 @@ import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import { SectionHeading } from "./section-heading";
 import { Modal } from "./modal";
 import { isVideo } from "@/lib/media";
+import { SmartVideo } from "./smart-video";
 import type { GalleryItem } from "@/lib/types";
 import { Slides } from "./slides";
 import { cn } from "@/lib/utils";
@@ -53,7 +54,7 @@ export function Gallery({ items }: { items: GalleryItem[] }) {
                 className="group relative mb-4 block w-full overflow-hidden rounded-2xl border border-orange-100 break-inside-avoid"
               >
                 {isVideo(g.src) ? (
-                  <video src={g.src} autoPlay muted loop playsInline className="w-full" />
+                  <SmartVideo src={g.src} autoPlay muted loop playsInline className="w-full" />
                 ) : (
                   <img src={g.src} alt={g.title} loading="lazy" decoding="async" className="w-full transition duration-700 group-hover:scale-105" />
                 )}
@@ -76,7 +77,7 @@ export function Gallery({ items }: { items: GalleryItem[] }) {
               className="h-[72vh] w-full sm:h-[78vh]"
               render={(g, _i, active) =>
                 isVideo(g.src) ? (
-                  active ? <video src={g.src} autoPlay controls playsInline className="h-full w-full rounded-2xl object-contain" /> : null
+                  active ? <SmartVideo src={g.src} autoPlay controls playsInline className="h-full w-full rounded-2xl object-contain" /> : null
                 ) : (
                   <img src={g.src} alt={g.title} decoding="async" className="h-full w-full rounded-2xl object-contain" />
                 )
