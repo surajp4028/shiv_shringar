@@ -195,7 +195,7 @@ export function Hero({ settings }: { settings: Settings }) {
             ].map((s) => (
               <div key={s.label} className="px-3 text-center">
                 <dd className="font-display text-xl font-semibold text-stone-900 sm:text-2xl md:text-[1.7rem]">{s.value}</dd>
-                <dt className="mt-0.5 text-[10px] font-medium tracking-wider text-stone-500 uppercase md:text-[11px]">{s.label}</dt>
+                <dt className="mt-0.5 text-[11px] font-medium tracking-wider text-stone-500 uppercase">{s.label}</dt>
               </div>
             ))}
           </motion.dl>
@@ -267,7 +267,7 @@ export function Hero({ settings }: { settings: Settings }) {
                 <IconFlame size={18} className="animate-flame" />
               </span>
               <span className="text-left">
-                <span className="block text-[10px] font-medium tracking-wider text-stone-500 uppercase">Shayan Aarti</span>
+                <span className="block text-[11px] font-medium tracking-wider text-stone-500 uppercase">Shayan Aarti</span>
                 <span className="flex items-center gap-1 font-display text-lg leading-tight font-semibold text-stone-900">
                   <IconClock size={14} className="text-orange-500" /> {settings.aartiTime}
                 </span>

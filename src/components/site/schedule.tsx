@@ -34,7 +34,7 @@ export function Schedule({ items }: { items: ScheduleItem[] }) {
                 <p className="text-sacred w-20 shrink-0 font-display text-xl font-semibold md:hidden">{s.time}</p>
                 <div className="flex-1 rounded-2xl border border-orange-100 bg-white p-5 pl-8 md:pl-5">
                   <p className="text-sacred hidden font-display text-2xl font-semibold md:block">{s.time}</p>
-                  <p className="text-[10px] tracking-widest text-orange-600 uppercase">{s.day}</p>
+                  <p className="text-[11px] tracking-widest text-orange-600 uppercase">{s.day}</p>
                   <h3 className="mt-1 font-display text-xl font-semibold text-stone-900">{s.title}</h3>
                   {s.description && <p className="mt-1 text-sm text-stone-600">{s.description}</p>}
                 </div>

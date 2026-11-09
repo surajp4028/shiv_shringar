@@ -194,7 +194,7 @@ export function Darshan({ items }: { items: ShringarItem[] }) {
                 </span>
               )}
               <div className="absolute inset-x-0 bottom-0 p-3.5">
-                <p className="text-[10px] font-medium tracking-wider text-orange-200 uppercase">{s.occasion}</p>
+                <p className="text-[11px] font-medium tracking-wider text-orange-200 uppercase">{s.occasion}</p>
                 <p className="font-display text-lg leading-tight font-semibold text-white">{s.title}</p>
               </div>
             </button>

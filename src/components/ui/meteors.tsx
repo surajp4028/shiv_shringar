@@ -13,6 +13,8 @@ export const Meteors = ({
   const meteors = new Array(number || 20).fill(true);
   return (
     <motion.div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -33,8 +35,9 @@ export const Meteors = ({
             style={{
               top: "-40px", // Start above the container
               left: position + "px",
-              animationDelay: Math.random() * 5 + "s", // Random delay between 0-5s
-              animationDuration: Math.floor(Math.random() * (10 - 5) + 5) + "s", // Keep some randomness in duration
+              // Deterministic "random" timing so server and client render the same markup.
+              animationDelay: ((idx * 37) % 50) / 10 + "s",
+              animationDuration: 5 + ((idx * 53) % 5) + "s",
             }}
           ></span>
         );

@@ -56,7 +56,7 @@ export function SiteNavbar({ hidden = [] }: { hidden?: string[] }) {
         </MobileNavHeader>
         <MobileNavMenu isOpen={open} onClose={() => setOpen(false)}>
           {[...items, ...(showSeva ? [{ name: "Offer Seva", link: "#support" }] : [])].map((item) => (
-            <a key={item.link} href={item.link} onClick={() => setOpen(false)} className="w-full text-lg text-stone-700">
+            <a key={item.link} href={item.link} onClick={() => setOpen(false)} className="block w-full rounded-xl px-2 py-2.5 text-lg text-stone-700 transition active:bg-orange-50">
               {item.name}
             </a>
           ))}

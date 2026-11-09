@@ -101,7 +101,7 @@ export function Events({ items: all }: { items: EventItem[] }) {
                     <Media src={e.image} alt={e.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
                     <div className="absolute top-4 left-4 rounded-2xl bg-white/90 px-3 py-2 text-center shadow backdrop-blur">
                       <p className="text-sacred font-display text-2xl leading-none font-semibold">{formatDate(e.date, { day: "2-digit" })}</p>
-                      <p className="text-[10px] tracking-wider text-stone-500 uppercase">{formatDate(e.date, { month: "short" })}</p>
+                      <p className="text-[11px] tracking-wider text-stone-500 uppercase">{formatDate(e.date, { month: "short" })}</p>
                     </div>
                     {n > 1 && (
                       <span className="absolute right-3 bottom-3 flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[11px] text-white">

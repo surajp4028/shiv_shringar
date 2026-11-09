@@ -23,6 +23,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { SiWhatsapp } from "react-icons/si";
 import { SectionHeading } from "./section-heading";
+import { PhoneSwipe } from "./phone-swipe";
 import { waLink } from "@/lib/media";
 import type { Settings } from "@/lib/types";
 
@@ -155,7 +156,7 @@ export function Support({ settings }: { settings: Settings }) {
         />
 
         <div className="grid gap-6 lg:grid-cols-5">
-          <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:col-span-3">
+          <PhoneSwipe className="min-w-0 lg:col-span-3" grid="sm:grid sm:grid-cols-2 sm:gap-5">
             {ways.map(({ icon: Icon, title, text, type: t }, i) => (
               <motion.button
                 type="button"
@@ -165,17 +166,17 @@ export function Support({ settings }: { settings: Settings }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.07 }}
-                className="group rounded-2xl border border-orange-100 bg-white p-4 text-left sm:rounded-3xl sm:p-7 transition duration-300 hover:-translate-y-1 hover:border-orange-300 hover:shadow-[0_24px_50px_-24px_rgba(194,65,12,0.35)]"
+                className="group rounded-2xl border border-orange-100 bg-white p-5 text-left sm:rounded-3xl sm:p-7 transition duration-300 hover:-translate-y-1 hover:border-orange-300 hover:shadow-[0_24px_50px_-24px_rgba(194,65,12,0.35)]"
               >
                 <div className="w-fit rounded-xl bg-orange-50 p-2.5 text-orange-600 sm:rounded-2xl sm:p-3 ring-1 ring-orange-100 transition group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-red-600 group-hover:text-white">
                   <Icon size={22} />
                 </div>
                 <h3 className="mt-3 font-display text-lg leading-tight font-semibold text-stone-900 sm:mt-5 sm:text-2xl">{title}</h3>
-                <p className="mt-1.5 line-clamp-4 text-xs leading-relaxed text-stone-600 sm:mt-2 sm:line-clamp-none sm:text-sm">{text}</p>
-                <p className="mt-3 text-xs font-semibold text-orange-600 sm:mt-4 sm:text-sm sm:opacity-0 sm:transition sm:group-hover:opacity-100">Request →</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-stone-600 sm:mt-2">{text}</p>
+                <p className="mt-3 text-sm font-semibold text-orange-600 sm:mt-4 sm:text-sm sm:opacity-0 sm:transition sm:group-hover:opacity-100">Request →</p>
               </motion.button>
             ))}
-          </div>
+          </PhoneSwipe>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}

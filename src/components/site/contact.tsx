@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useMounted } from "@/hooks/use-mounted";
 import { SectionHeading } from "./section-heading";
+import { Meteors } from "@/components/ui/meteors";
 import { waLink } from "@/lib/media";
 import type { Settings, TripItem } from "@/lib/types";
 
@@ -82,6 +83,7 @@ export function Contact({ settings, trips }: { settings: Settings; trips: TripIt
         <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-5">
           <div className="relative overflow-hidden rounded-3xl bg-[#1a0f0a] p-8 text-white lg:col-span-2">
             <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-orange-600/30 blur-3xl" />
+            <Meteors number={18} className="bg-amber-300 shadow-[0_0_0_1px_#fbbf2420] before:from-amber-400 before:via-amber-500/40" />
             <div className="relative z-10">
               <img src="/brand/logo.png" alt="" className="h-16 w-16 rounded-full object-cover ring-1 ring-amber-400/30" />
               <h3 className="text-gold mt-4 font-display text-3xl font-semibold">{settings.samitiName}</h3>

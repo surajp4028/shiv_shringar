@@ -46,7 +46,7 @@ export function Scroller({
   };
 
   const btn = cn(
-    "flex h-8 w-8 items-center justify-center rounded-full border backdrop-blur transition disabled:pointer-events-none disabled:opacity-30",
+    "flex h-9 w-9 items-center justify-center rounded-full border backdrop-blur transition disabled:pointer-events-none disabled:opacity-30",
     dark
       ? "border-white/15 bg-white/10 text-white hover:bg-white/20"
       : "border-orange-200 bg-white/90 text-stone-700 shadow-sm hover:border-orange-400 hover:text-orange-600",
