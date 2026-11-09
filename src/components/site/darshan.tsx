@@ -204,15 +204,15 @@ export function Darshan({ items }: { items: ShringarItem[] }) {
 
       <Modal open={!!open} onClose={() => setOpen(null)} className="max-w-3xl">
         {open && (
-          <div className="grid overflow-hidden rounded-3xl bg-white md:grid-cols-2">
+          <div className="grid overflow-hidden rounded-3xl bg-white md:max-h-[85vh] md:grid-cols-2">
             {open.video && mediaKind(open.video) === "file" ? (
-              <SmartVideo src={open.video} poster={open.image} autoPlay muted loop playsInline controls className="max-h-[80vh] w-full bg-black object-contain" />
+              <SmartVideo src={open.video} poster={open.image} autoPlay muted loop playsInline controls className="max-h-[60vh] w-full bg-black object-contain md:h-full md:max-h-[85vh]" />
             ) : open.video && mediaKind(open.video) === "youtube" ? (
-              <iframe src={embedUrl(open.video)} title={open.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" className="aspect-[9/16] max-h-[80vh] w-full bg-black md:aspect-auto md:h-full" />
+              <iframe src={embedUrl(open.video)} title={open.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" className="aspect-[9/16] max-h-[60vh] w-full bg-black md:aspect-auto md:h-full md:max-h-none" />
             ) : (
-              <img src={open.image} alt={open.title} className="max-h-[80vh] w-full object-cover md:h-full" />
+              <img src={open.image} alt={open.title} className="max-h-[60vh] w-full object-cover md:h-full md:max-h-none" />
             )}
-            <div className="p-8">
+            <div className="p-6 sm:p-8 md:overflow-y-auto">
               <p className="text-xs font-semibold tracking-widest text-orange-600 uppercase">{open.deity} • {open.occasion}</p>
               <h3 className="text-sacred mt-2 font-display text-4xl font-semibold">{open.title}</h3>
               <p className="mt-2 text-sm text-stone-500">{formatDate(open.date)}</p>

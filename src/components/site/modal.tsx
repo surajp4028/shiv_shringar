@@ -45,7 +45,7 @@ export function Modal({
             exit={{ opacity: 0, scale: 0.96, y: 10 }}
             transition={{ type: "spring", stiffness: 260, damping: 26 }}
             onClick={(e) => e.stopPropagation()}
-            className={cn("relative max-h-[92vh] w-full max-w-4xl", className)}
+            className={cn("no-scrollbar relative max-h-[92vh] w-full max-w-4xl overflow-y-auto overscroll-contain rounded-3xl", className)}
           >
             {children}
           </motion.div>
